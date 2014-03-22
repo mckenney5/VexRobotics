@@ -30,6 +30,7 @@ short aselect = 0; //----------------------------------Autonomous Switch Variabl
 const short leftButton = 1;
 const short centerButton = 2;
 const short rightButton = 4;
+string mainBattery, backupBattery;
 void pre_auton()
 {
   bStopTasksBetweenModes = true; //------------------Set bStopTasksBetweenModes to false to keep user created tasks running
@@ -43,31 +44,82 @@ void pre_auton()
   nMotorEncoder[rbucket] = 0;
 
   //-------------------------------------------------$Autonomous Program Selection$
+  bLCDBacklight = true;
   clearLCDLine(0);
+  clearLCDLine(1);
+  displayLCDString(0, 0, "Primary: ");
+	sprintf(mainBattery, "%1.2f%c", nImmediateBatteryLevel/1000.0,'V');
+	displayNextLCDString(mainBattery);
+	displayLCDString(1, 0, "Backup: ");
+	sprintf(backupBattery, "%1.2f%c", BackupBatteryLevel/1000.0, 'V');
+	displayNextLCDString(backupBattery);
+	sleep(2000);
+
+	clearLCDLine(0);
   clearLCDLine(1);
 	displayLCDPos(0,0);
 	displayNextLCDString("Autonomous ");
 	displayLCDPos(0,11);
 	displayNextLCDNumber(aselect);
-	displayLCDCenteredString(1,"<     V     >");
-	while(SensorValue(override)==0)
+	displayLCDCenteredString(1,"<     X     >");
+	while(nLCDButtons!=centerButton)
 	{
 		if(nLCDButtons==rightButton)
+		{
 			aselect++;
+			clearLCDLine(0);
+			displayLCDPos(0,0);
+			displayNextLCDString("Autonomous ");
+			displayLCDPos(0,11);
+			displayNextLCDNumber(aselect);
+			while(nLCDButtons==rightButton)
+			{}
+		}
 		else if(nLCDButtons==leftButton)
+		{
+			clearLCDLine(0);
+			displayLCDPos(0,0);
+			displayNextLCDString("Autonomous ");
 			aselect--;
+			displayLCDPos(0,11);
+			displayNextLCDNumber(aselect);
+			while(nLCDButtons==leftButton)
+			{}
+		}
+	}
  	//-------------------------------------------------$$End Autonomous Selection$$
+	clearLCDLine(1);
+	displayLCDCenteredString(1,"Selected");
+	sleep(2000);
+	bLCDBacklight = false;
 }
 task autonomous()
 {
+	reset:
+	switch(aselect)
+	{
+		case 0:
+			clearLCDLine(0);
+			displayLCDCenteredString(0,"pgm0 WORKING");
+		break;
 
+		case 1:
+			clearLCDLine(1);
+			displayLCDCenteredString(1,"pgm1 WORKING");
+		break;
+
+		default:
+			aselect = 0;
+			goto reset;
+		break;
+	}
 //AutonomousCodePlaceholderForTesting(); //----------Interface With Debugger
 }
 
 task usercontrol()
 {
-	const int ths = 15; //-----------------------------Threshold Variable
-	int c1 = 0, c2 = 0, c3 = 0, c4 = 0;	//-------------Deadzone Variables
+	const short ths = 15; //---------------------------Threshold Variable
+	short c1 = 0, c2 = 0, c3 = 0, c4 = 0;	//-----------Deadzone Variables
 	while(true) //-------------------------------------Infinite Loop
 	{
 	//-------------------------------------------------$Calculate Deadzones$
@@ -92,56 +144,7 @@ task usercontrol()
 	//UserControlCodePlaceholderForTesting(); //-------Interface With Debugger
 
 	//-------------------------------------------------$Controller Assignments$
-		if(vexRT[Btn5U]==1)
-		{
-			motor[fleft] = -100;
-			motor[fright] = 100;
-		}
-		else if(vexRT[Btn6U]==1)
-		{
-			motor[fleft] = 100;
-			motor[fright] = -100;
-		}
-		else if(vexRT[Btn5D]==1)
-		{
-			motor[bleft] = -100;
-			motor[bright] = 100;
-		}
-		else if(vexRT[Btn6D]==1)
-		{
-			motor[bleft] = 100;
-			motor[bright] = -100;
-		}
-		else
-		{
-			motor[bleft] = c3 + c4; //------------------------Back Left Wheel
-			motor[bright] = c3 - c4; //-----------------------Back Right Wheel
-			motor[fleft] = c3 + c4; //------------------------Front Left Wheel
-			motor[fright] = c3 - c4; //-----------------------Front Right Wheel
-		}
-		if(SensorValue(rackbtn)==1 && c1 > 0) //----------Rack Safety Button
-			motor[rack] = 0;
-		else
-			motor[rack] = c1; //----------------------------Rack Motor
 
-		motor[aleft] = c2/2; //-------------------------------Left Arm Motor
-		motor[aright] = c2/2; //------------------------------Right Arm Motor
-
-		if(vexRT[Btn8D]==1)
-			motor[t393] = 127;
-		else if(vexRT[Btn8R]==1)
-			motor[t269] = 127;
-		else
-		{
-			motor[t269] = 0;
-			motor[t393] = 0;
-		}
-		if(vexRT[Btn7D]==1)
-			motor[spool] = 127;
-		else if(vexRT[Btn7L]==1)
-			motor[spool] = -127;
-		else
-			motor[spool] = 0;
 	//-------------------------------------------------$$End Assignments$$
 	}
 }
