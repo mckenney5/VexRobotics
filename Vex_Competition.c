@@ -143,7 +143,7 @@ task usercontrol()
 
 																											//$Controller Assignments$
 			//Drive
-			if (vexRT[Ch3] != 0 && abs(vexRT[Ch4] < 70)){ 	//If the left thumb stick is pushed up and not even close to left or right
+			if (vexRT[Ch3] != 0 && abs(vexRT[Ch4]) < 70){ 	//If the left thumb stick is pushed up and not even close to left or right
 			motor[LDrive] = vexRT[Ch3];
 			motor[RDrive] = vexRT[Ch3];
 		}
