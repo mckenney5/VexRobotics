@@ -157,8 +157,12 @@ task usercontrol()
 					motor[RDrive] = -50;
 				}
 		}
+			if (vexRT[Ch2] != 0){
+				motor[LBucket] = vexRT[Ch2];
+				motor[RBucket] = vexRT[Ch2];
+		}
 
 																											//$$End Assignments$$
 
-	} //infanite loop
-}		// end of driver control
+	} //Infinite loop
+}		//End of driver control
