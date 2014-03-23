@@ -27,9 +27,9 @@
 //////////////////////////////////////////
 
 short aselect = 0; 																	//Autonomous Switch Variable
-const short leftButton = 1;
-const short centerButton = 2;
-const short rightButton = 4;
+const int leftButton = 1;
+const int centerButton = 2;
+const int rightButton = 4;
 string mainBattery, backupBattery;
 void pre_auton()
 {
@@ -116,8 +116,8 @@ task autonomous()
 
 task usercontrol()
 {
-	const short ths = 15; 															//Threshold Variable
-	short c1 = 0, c2 = 0, c3 = 0, c4 = 0;								//Deadzone Variables
+	const int ths = 15; 															//Threshold Variable
+	int c1 = 0, c2 = 0, c3 = 0, c4 = 0;								//Deadzone Variables
 	while(true) 																				//Infinite Loop
 	{
 																											//$Calculate Deadzones$
@@ -142,8 +142,14 @@ task usercontrol()
 	//UserControlCodePlaceholderForTesting(); 					//Interface With Debugger
 
 																											//$Controller Assignments$
+		motor[LDrive] = c3 + c4;
+		motor[rdrive] = c3 - c4;
+
+		slaveMotor(rbucket, lbucket);
+    motor[lbucket] = c2;
+
 			//Drive
-			if (vexRT[Ch3] != 0 && abs(vexRT[Ch4]) < 70){ 	//If the left thumb stick is pushed up and not even close to left or right
+/*			if (vexRT[Ch3] != 0 && abs(vexRT[Ch4]) < 70){ 	//If the left thumb stick is pushed up and not even close to left or right
 			motor[LDrive] = vexRT[Ch3];
 			motor[RDrive] = vexRT[Ch3];
 		}
@@ -160,7 +166,7 @@ task usercontrol()
 			if (vexRT[Ch2] != 0){
 				motor[LBucket] = vexRT[Ch2];
 				motor[RBucket] = vexRT[Ch2];
-		}
+		}*/
 
 																											//$$End Assignments$$
 
