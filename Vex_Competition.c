@@ -151,6 +151,9 @@ task usercontrol()
 			motor[LArm] = -100;
 		else if(vexRT[Btn5U]==1)
 			motor[LArm] = 100;
+		else
+			motor[LArm] = 0;
+
 		if(vexRT[Btn6D]==1)
 		{
 			motor[LPaddle] = 127;
@@ -160,6 +163,11 @@ task usercontrol()
 		{
 			motor[LPaddle] = -127;
 			motor[RPaddle] = -127;
+		}
+		else
+		{
+			motor[LPaddle] = 0;
+			motor[RPaddle] = 0;
 		}
 			//Drive
 /*			if (vexRT[Ch3] != 0 && abs(vexRT[Ch4]) < 70){ 	//If the left thumb stick is pushed up and not even close to left or right
