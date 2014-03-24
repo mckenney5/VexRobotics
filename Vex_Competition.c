@@ -186,26 +186,6 @@ task usercontrol()
 			motor[LPaddle] = 0;
 			motor[RPaddle] = 0;
 		}
-			//Drive
-/*			if (vexRT[Ch3] != 0 && abs(vexRT[Ch4]) < 70){ 	//If the left thumb stick is pushed up and not even close to left or right
-			motor[LDrive] = vexRT[Ch3];
-			motor[RDrive] = vexRT[Ch3];
-		}
-			if (vexRT[Ch4] != 0){
-				if (vexRT[Ch4] == 100){
-					motor[LDrive] = -50;
-					motor[RDrive] = 50;
-			}
-				else if (vexRT[Ch4] == -100){
-					motor[LDrive] = 50;
-					motor[RDrive] = -50;
-				}
-		}
-			if (vexRT[Ch2] != 0){
-				motor[LBucket] = vexRT[Ch2];
-				motor[RBucket] = vexRT[Ch2];
-		}*/
-
 																										//$$End Assignments$$
 
 	} //Infinite loop
