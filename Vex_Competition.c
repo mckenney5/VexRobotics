@@ -1,5 +1,5 @@
 #pragma config(I2C_Usage, I2C1, i2cSensors)
-#pragma config(Sensor, dgtl1,  override,       sensorTouch)
+#pragma config(Sensor, dgtl1,  DEncoders,      sensorTouch)
 #pragma config(Sensor, I2C_1,  encoder_RDrive, sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_2,  encoder_RArm,   sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_3,  encoder_LArm,   sensorQuadEncoderOnI2CPort,    , AutoAssign)
@@ -24,7 +24,7 @@
 #include "Vex_Competition_Includes.c" 	//
 //////////////////////////////////////////
 
-int aselect = 0; 																	//Autonomous Switch Variable
+int aselect = 0; 																		//Autonomous Switch Variable
 const int leftButton = 1;
 const int centerButton = 2;
 const int rightButton = 4;
@@ -42,7 +42,7 @@ void pre_auton()
   nMotorEncoder[RBucket] = 0;
   slaveMotor(RBucket, LBucket);
 	slaveMotor(RArm, LArm);
-
+	top:	//hot restart point
   bLCDBacklight = true;
   clearLCDLine(0);
   clearLCDLine(1);
@@ -53,6 +53,22 @@ void pre_auton()
 	sprintf(backupBattery, "%1.2f%c", BackupBatteryLevel/1000.0, 'V');
 	displayNextLCDString(backupBattery);
 	sleep(2000);
+
+	while(SensorValue(DEncoders)==1)	//while jumper in port 1
+	{
+		clearLCDLine(0);
+  	clearLCDLine(1);
+  	displayLCDPos(0,0);
+  	displayNextLCDString("LArm = ");
+  	displayLCDPos(0,7);
+  	displayNextLCDNumber(nMotorEncoder[LArm]);	//LArm encoder readout
+  	displayLCDPos(1,0);
+  	displayNextLCDString("RArm = ");
+  	displayLCDPos(1,7);
+  	displayNextLCDNumber(nMotorEncoder[RArm]);	//RArm encoder readout
+  	if(nLCDButtons==centerButton)
+  		goto top;	//if center button pressed, hot restart program
+  }
 																										//$Autonomous Program Selection$
 	clearLCDLine(0);
   clearLCDLine(1);
@@ -87,7 +103,7 @@ void pre_auton()
 	clearLCDLine(1);
 	displayLCDCenteredString(1,"Selected");
 	sleep(2000);
-
+																										//$$End Autonomous Selection$$
 	clearLCDLine(0);
   clearLCDLine(1);
   displayLCDString(0, 0, "Primary: ");
@@ -97,18 +113,19 @@ void pre_auton()
 	sleep(2000);
 	bLCDBacklight = false;
 }
-																											//$$End Autonomous Selection$$
 task autonomous()
 {
 	reset:
 	switch(aselect)
 	{
 		case 0:
-			AutonomousCodePlaceholderForTesting();						//remove pesky compiler warnings
+		break;
+		case 1:
+			AutonomousCodePlaceholderForTesting();				//remove pesky compiler warnings
 		break;
 
-		case 1:
-			UserControlCodePlaceholderForTesting();						//remove pesky compiler warnings
+		case 2:
+			UserControlCodePlaceholderForTesting();				//remove pesky compiler warnings
 		break;
 
 		default:
