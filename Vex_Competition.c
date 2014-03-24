@@ -41,6 +41,7 @@ void pre_auton()
   nMotorEncoder[LBucket] = 0;
   nMotorEncoder[RBucket] = 0;
   slaveMotor(RBucket, LBucket);
+	slaveMotor(RArm, LArm);
 
   bLCDBacklight = true;
   clearLCDLine(0);
@@ -103,13 +104,11 @@ task autonomous()
 	switch(aselect)
 	{
 		case 0:
-			clearLCDLine(0);
-			displayLCDCenteredString(0,"pgm0 WORKING");
+			AutonomousCodePlaceholderForTesting();						//remove pesky compiler warnings
 		break;
 
 		case 1:
-			clearLCDLine(1);
-			displayLCDCenteredString(1,"pgm1 WORKING");
+			UserControlCodePlaceholderForTesting();						//remove pesky compiler warnings
 		break;
 
 		default:
@@ -148,7 +147,20 @@ task usercontrol()
 		motor[LDrive] = c3 + c4;
 		motor[RDrive] = c3 - c4;
     motor[LBucket] = c2;
-
+		if(vexRT[Btn5D]==1)
+			motor[LArm] = -100;
+		else if(vexRT[Btn5U]==1)
+			motor[LArm] = 100;
+		if(vexRT[Btn6D]==1)
+		{
+			motor[LPaddle] = 127;
+			motor[RPaddle] = 127;
+		}
+		else if(vexRT[Btn6U]==1)
+		{
+			motor[LPaddle] = -127;
+			motor[RPaddle] = -127;
+		}
 			//Drive
 /*			if (vexRT[Ch3] != 0 && abs(vexRT[Ch4]) < 70){ 	//If the left thumb stick is pushed up and not even close to left or right
 			motor[LDrive] = vexRT[Ch3];
