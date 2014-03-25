@@ -123,9 +123,12 @@ task autonomous()
 		case 1:
 			AutonomousCodePlaceholderForTesting();				//remove pesky compiler warnings
 		break;
-
 		case 2:
 			UserControlCodePlaceholderForTesting();				//remove pesky compiler warnings
+		break;
+		case 3:
+			motor[LDrive] = 127;
+			motor[RDrive] = 127;
 		break;
 
 		default:
