@@ -124,29 +124,27 @@ task autonomous()
 	switch(aselect)
 	{
 		case 0:
+
 		break;
 		case 1:
-			AutonomousCodePlaceholderForTesting();				//remove pesky compiler warnings
+
 		break;
 		case 2:
-			UserControlCodePlaceholderForTesting();				//remove pesky compiler warnings
+
 		break;
 		case 3:
 			motor[LDrive] = 127;
 			motor[RDrive] = 127;
 		break;
 		case 4:
-			while (nMotorEncoder[RDrive] < 6000 && nMotorEncoder[LDrive] < 6000)
-			{
-				motor[RDrive] = 100;
-				motor[LDrive] = 100;
-			}
-				nMotorPIDSpeedCtrl[RDri
+
 		break;
 
 		default:
 			aselect = 0;
 			goto reset;
+			UserControlCodePlaceholderForTesting();				//remove pesky compiler warnings
+			AutonomousCodePlaceholderForTesting();				//remove pesky compiler warnings
 		break;
 	}
 }
