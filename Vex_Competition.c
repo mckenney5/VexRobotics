@@ -130,6 +130,14 @@ task autonomous()
 			motor[LDrive] = 127;
 			motor[RDrive] = 127;
 		break;
+		case 4:
+			while (nMotorEncoder[RDrive] < 6000 && nMotorEncoder[LDrive] < 6000)
+			{
+				motor[RDrive] = 100;
+				motor[LDrive] = 100;
+			}
+				nMotorPIDSpeedCtrl[RDri
+		break;
 
 		default:
 			aselect = 0;
