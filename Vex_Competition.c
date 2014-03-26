@@ -25,9 +25,7 @@
 //////////////////////////////////////////
 
 int aselect = 0; 																		//Autonomous Switch Variable
-const int leftButton = 1;
-const int centerButton = 2;
-const int rightButton = 4;
+const int leftButton = 1,centerButton = 2, rightButton = 4;
 string mainBattery, backupBattery;
 void pre_auton()
 {
@@ -78,7 +76,7 @@ void pre_auton()
 	displayNextLCDNumber(aselect);
 	displayLCDCenteredString(1,"<      X     >");
 	clearTimer(T1);
-	while(nLCDButtons!=centerButton && time1[T1]<10000)
+	while(nLCDButtons!=centerButton && time1[T1]<5000)
 	{	//5 second time limit for program selection
 		if(nLCDButtons==rightButton)
 		{
@@ -142,6 +140,13 @@ task autonomous()
 
 		default:
 			aselect = 0;
+			clearLCDLine(0);
+			clearLCDLine(1);
+			displayLCDPos(0,0);
+			displayNextLCDString("Autonomous ");
+			displayLCDPos(0,11);
+			displayNextLCDNumber(aselect);
+			displayLCDCenteredString(1,"Running as Default");
 			goto reset;
 			UserControlCodePlaceholderForTesting();				//remove pesky compiler warnings
 			AutonomousCodePlaceholderForTesting();				//remove pesky compiler warnings
@@ -175,22 +180,26 @@ task usercontrol()
 																										//$$End Deadzones$$
 
 																										//$Controller Assignments$
-		motor[LDrive] = c3 + c4;
-		motor[RDrive] = c3 - c4;
-    motor[LBucket] = c2;
-		if(vexRT[Btn5D]==1)
+		motor[LDrive] = c3 + c4;	//drive axis
+		motor[RDrive] = c3 - c4;	//turn axis
+    motor[LBucket] = c2;	//bucket axis
+
+    motor[LPaddle] = c1;	//paddle axit !BETA!
+    motor[RPaddle] = c1;
+
+		if(vexRT[Btn5D]==1)	//arms down
 			motor[LArm] = -100;
-		else if(vexRT[Btn5U]==1)
+		else if(vexRT[Btn5U]==1)	//arms up
 			motor[LArm] = 100;
 		else
 			motor[LArm] = 0;
 
-		if(vexRT[Btn6D]==1)
+		if(vexRT[Btn6D]==1)	//paddles forward
 		{
 			motor[LPaddle] = 127;
 			motor[RPaddle] = 127;
 		}
-		else if(vexRT[Btn6U]==1)
+		else if(vexRT[Btn6U]==1)	//paddles reverse
 		{
 			motor[LPaddle] = -127;
 			motor[RPaddle] = -127;
