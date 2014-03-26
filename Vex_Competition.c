@@ -77,11 +77,13 @@ void pre_auton()
 	displayLCDPos(0,11);
 	displayNextLCDNumber(aselect);
 	displayLCDCenteredString(1,"<      X     >");
-	while(nLCDButtons!=centerButton)
-	{
+	clearTimer(T1);
+	while(nLCDButtons!=centerButton && time1[T1]<10000)
+	{	//5 second time limit for program selection
 		if(nLCDButtons==rightButton)
 		{
-			aselect++;
+			clearTimer(T1);	//reset time limit
+			aselect++;	//go to next auto program
 			clearLCDLine(0);
 			displayLCDPos(0,0);
 			displayNextLCDString("Autonomous ");
@@ -91,10 +93,11 @@ void pre_auton()
 		}
 		else if(nLCDButtons==leftButton)
 		{
+			clearTimer(T1);	//reset time limit
 			clearLCDLine(0);
 			displayLCDPos(0,0);
 			displayNextLCDString("Autonomous ");
-			aselect--;
+			aselect--;	//go to previous auto program
 			displayLCDPos(0,11);
 			displayNextLCDNumber(aselect);
 			while(nLCDButtons==leftButton){}
@@ -111,6 +114,8 @@ void pre_auton()
 	displayLCDString(1, 0, "Backup: ");
 	displayNextLCDString(backupBattery);
 	sleep(2000);
+	if(nLCDButtons!=0)
+		goto top;
 	bLCDBacklight = false;
 }
 task autonomous()
