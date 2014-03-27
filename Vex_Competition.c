@@ -124,22 +124,22 @@ task autonomous()
 			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
 			moveMotorTarget(RArm,000,100,true);
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward from start
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,4356,100,true);	//drive forward from start over bump
+			moveMotorTarget(RDrive,4356,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
 			while(getMotorTargetCompleted(RArm)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 1
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,871,100,true);	//drive forward and hit large ball 1
+			moveMotorTarget(RDrive,871,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,871,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,871,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -147,11 +147,11 @@ task autonomous()
 			moveMotorTarget(LDrive,000,100,true);	//turn right 90 degrees
 			moveMotorTarget(RDrive,000,100,true);
 
-			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for turn completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward to line up large ball 2 on right
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,2614,100,true);	//drive forward to line up large ball 2 on left
+			moveMotorTarget(RDrive,2614,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -159,16 +159,16 @@ task autonomous()
 			moveMotorTarget(LDrive,000,100,true);	//turn left 90 degrees
 			moveMotorTarget(RDrive,000,100,true);
 
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for turn completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,799,100,true);	//drive forward and hit large ball 2
+			moveMotorTarget(RDrive,799,100,true);
+
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 2
-			moveMotorTarget(RDrive,000,100,true);
-
-			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
-			while(getMotorTargetCompleted(RDrive)!=1){}
-
-			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(LDrive,-799,100,true);	//back up to previous values
 			moveMotorTarget(RDrive,000,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
@@ -198,22 +198,22 @@ task autonomous()
 			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
 			moveMotorTarget(RArm,000,100,true);
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward from start
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,1525,100,true);	//drive forward from start
+			moveMotorTarget(RDrive,1525,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
 			while(getMotorTargetCompleted(RArm)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 1
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,871,100,true);	//drive forward and hit large ball 1
+			moveMotorTarget(RDrive,871,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,871,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,871,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -221,11 +221,11 @@ task autonomous()
 			moveMotorTarget(LDrive,000,100,true);	//turn right 90 degrees
 			moveMotorTarget(RDrive,000,100,true);
 
-			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for turn completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward to line up large ball 2 on right
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,2614,100,true);	//drive forward to line up large ball 2 on left
+			moveMotorTarget(RDrive,2614,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -233,16 +233,16 @@ task autonomous()
 			moveMotorTarget(LDrive,000,100,true);	//turn left 90 degrees
 			moveMotorTarget(RDrive,000,100,true);
 
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for turn completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,799,100,true);	//drive forward and hit large ball 2
+			moveMotorTarget(RDrive,799,100,true);
+
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 2
-			moveMotorTarget(RDrive,000,100,true);
-
-			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
-			while(getMotorTargetCompleted(RDrive)!=1){}
-
-			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(LDrive,-799,100,true);	//back up to previous values
 			moveMotorTarget(RDrive,000,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
@@ -272,22 +272,22 @@ task autonomous()
 			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
 			moveMotorTarget(RArm,000,100,true);
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward from start
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,4356,100,true);	//drive forward from start over bump
+			moveMotorTarget(RDrive,4356,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
 			while(getMotorTargetCompleted(RArm)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 1
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,871,100,true);	//drive forward and hit large ball 1
+			moveMotorTarget(RDrive,871,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,871,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,871,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -295,11 +295,11 @@ task autonomous()
 			moveMotorTarget(LDrive,000,100,true);	//turn left 90 degrees
 			moveMotorTarget(RDrive,000,100,true);
 
-			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for turn completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward to line up large ball 2 on right
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,2614,100,true);	//drive forward to line up large ball 2 on right
+			moveMotorTarget(RDrive,2614,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -307,16 +307,16 @@ task autonomous()
 			moveMotorTarget(LDrive,000,100,true);	//turn right 90 degrees
 			moveMotorTarget(RDrive,000,100,true);
 
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for turn completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,799,100,true);	//drive forward and hit large ball 2
+			moveMotorTarget(RDrive,799,100,true);
+
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 2
-			moveMotorTarget(RDrive,000,100,true);
-
-			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
-			while(getMotorTargetCompleted(RDrive)!=1){}
-
-			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(LDrive,-799,100,true);	//back up to previous values
 			moveMotorTarget(RDrive,000,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
@@ -346,22 +346,22 @@ task autonomous()
 			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
 			moveMotorTarget(RArm,000,100,true);
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward from start
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,1525,100,true);	//drive forward from start over bump
+			moveMotorTarget(RDrive,1525,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
 			while(getMotorTargetCompleted(RArm)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 1
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,871,100,true);	//drive forward and hit large ball 1
+			moveMotorTarget(RDrive,871,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,871,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,871,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -369,11 +369,11 @@ task autonomous()
 			moveMotorTarget(LDrive,000,100,true);	//turn left 90 degrees
 			moveMotorTarget(RDrive,000,100,true);
 
-			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for turn completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward to line up large ball 2 on right
-			moveMotorTarget(RDrive,000,100,true);
+			moveMotorTarget(LDrive,2614,100,true);	//drive forward to line up large ball 2 on right
+			moveMotorTarget(RDrive,2614,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -381,16 +381,16 @@ task autonomous()
 			moveMotorTarget(LDrive,000,100,true);	//turn right 90 degrees
 			moveMotorTarget(RDrive,000,100,true);
 
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for turn completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,799,100,true);	//drive forward and hit large ball 2
+			moveMotorTarget(RDrive,799,100,true);
+
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 
-			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 2
-			moveMotorTarget(RDrive,000,100,true);
-
-			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
-			while(getMotorTargetCompleted(RDrive)!=1){}
-
-			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(LDrive,-799,100,true);	//back up to previous values
 			moveMotorTarget(RDrive,000,100,true);
 
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
