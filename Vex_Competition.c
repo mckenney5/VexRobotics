@@ -38,7 +38,9 @@ void pre_auton()
   nMotorEncoder[LDrive] = 0;
   nMotorEncoder[LBucket] = 0;
   nMotorEncoder[RBucket] = 0;
+
 	top:	//hot restart point
+
   bLCDBacklight = true;
   clearLCDLine(0);
   clearLCDLine(1);
@@ -502,6 +504,16 @@ task usercontrol()
 			motor[RPaddle] = 0;
 		}
 																										//$$End Assignments$$
-
+		if(SensorValue(DEncoders)==1)
+		{
+			clearLCDLine(0);
+  		clearLCDLine(1);
+  		displayLCDPos(0,0);
+  		displayNextLCDString("LArm = ");
+  		displayNextLCDNumber(nMotorEncoder[LArm]);	//LArm encoder readout
+  		displayLCDPos(1,0);
+  		displayNextLCDString("RArm = ");
+  		displayNextLCDNumber(nMotorEncoder[RArm]);	//RArm encoder readout
+  	}
 	} //Infinite loop
 }		//End of driver control
