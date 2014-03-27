@@ -38,8 +38,6 @@ void pre_auton()
   nMotorEncoder[LDrive] = 0;
   nMotorEncoder[LBucket] = 0;
   nMotorEncoder[RBucket] = 0;
-  slaveMotor(RBucket, LBucket);
-	slaveMotor(RArm, LArm);
 	top:	//hot restart point
   bLCDBacklight = true;
   clearLCDLine(0);
@@ -118,27 +116,313 @@ void pre_auton()
 }
 task autonomous()
 {
+	clearTimer(T2);	//start autonomous timer
 	reset:
 	switch(aselect)
 	{
-		case 0:
+		case 0:	//rear left starting tile
+			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
+			moveMotorTarget(RArm,000,100,true);
 
-		break;
-		case 1:
+			moveMotorTarget(LDrive,000,100,true);	//drive forward from start
+			moveMotorTarget(RDrive,000,100,true);
 
-		break;
-		case 2:
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
+			while(getMotorTargetCompleted(RArm)!=1){}
 
+			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 1
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//turn right 90 degrees
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward to line up large ball 2 on right
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//turn left 90 degrees
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 2
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LArm,000,100,true);	//lower arm to ground
+			moveMotorTarget(RArm,000,100,true);
+
+			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
+			while(getMotorTargetCompleted(RArm)!=1){}
+
+			bLCDBacklight = true;
+			clearLCDLine(0);
+			clearLCDLine(1);
+			displayLCDPos(0,0);
+			displayNextLCDString("Auto ");
+			displayNextLCDNumber(aselect);
+			displayNextLCDString("Complete");
+			displayLCDPos(1,0);
+			displayNextLCDString("Time: ");
+			displayNextLCDNumber(time1[T2]/1000);	//display elapsed time for autonomous period
+			while(nLCDButtons!=0){}
+			bLCDBacklight = false;
 		break;
-		case 3:
+
+		case 1:	//front left starting tile
+			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
+			moveMotorTarget(RArm,000,100,true);
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward from start
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
+			while(getMotorTargetCompleted(RArm)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 1
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//turn right 90 degrees
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward to line up large ball 2 on right
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//turn left 90 degrees
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 2
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LArm,000,100,true);	//lower arm to ground
+			moveMotorTarget(RArm,000,100,true);
+
+			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
+			while(getMotorTargetCompleted(RArm)!=1){}
+
+			bLCDBacklight = true;
+			clearLCDLine(0);
+			clearLCDLine(1);
+			displayLCDPos(0,0);
+			displayNextLCDString("Auto ");
+			displayNextLCDNumber(aselect);
+			displayNextLCDString("Complete");
+			displayLCDPos(1,0);
+			displayNextLCDString("Time: ");
+			displayNextLCDNumber(time1[T2]/1000);	//display elapsed time for autonomous period
+			while(nLCDButtons!=0){}
+			bLCDBacklight = false;
+		break;
+
+		case 2:	//rear right starting tile
+			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
+			moveMotorTarget(RArm,000,100,true);
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward from start
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
+			while(getMotorTargetCompleted(RArm)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 1
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//turn left 90 degrees
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward to line up large ball 2 on right
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//turn right 90 degrees
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 2
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LArm,000,100,true);	//lower arm to ground
+			moveMotorTarget(RArm,000,100,true);
+
+			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
+			while(getMotorTargetCompleted(RArm)!=1){}
+
+			bLCDBacklight = true;
+			clearLCDLine(0);
+			clearLCDLine(1);
+			displayLCDPos(0,0);
+			displayNextLCDString("Auto ");
+			displayNextLCDNumber(aselect);
+			displayNextLCDString("Complete");
+			displayLCDPos(1,0);
+			displayNextLCDString("Time: ");
+			displayNextLCDNumber(time1[T2]/1000);	//display elapsed time for autonomous period
+			while(nLCDButtons!=0){}
+			bLCDBacklight = false;
+		break;
+
+		case 3:	//front right starting tile
+			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
+			moveMotorTarget(RArm,000,100,true);
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward from start
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
+			while(getMotorTargetCompleted(RArm)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 1
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//turn left 90 degrees
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward to line up large ball 2 on right
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//turn right 90 degrees
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//drive forward and hit large ball 2
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LDrive,000,100,true);	//back up to previous values
+			moveMotorTarget(RDrive,000,100,true);
+
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+
+			moveMotorTarget(LArm,000,100,true);	//lower arm to ground
+			moveMotorTarget(RArm,000,100,true);
+
+			while(getMotorTargetCompleted(LArm)!=1){}	//wait for arm completion
+			while(getMotorTargetCompleted(RArm)!=1){}
+
+			bLCDBacklight = true;
+			clearLCDLine(0);
+			clearLCDLine(1);
+			displayLCDPos(0,0);
+			displayNextLCDString("Auto ");
+			displayNextLCDNumber(aselect);
+			displayNextLCDString("Complete");
+			displayLCDPos(1,0);
+			displayNextLCDString("Time: ");
+			displayNextLCDNumber(time1[T2]/1000);	//display elapsed time for autonomous period
+			while(nLCDButtons!=0){}
+			bLCDBacklight = false;
+		break;
+
+		case 4:
 			motor[LDrive] = 127;
 			motor[RDrive] = 127;
 		break;
-		case 4:
-
-		break;
 
 		default:
+			bLCDBacklight = true;
 			aselect = 0;
 			clearLCDLine(0);
 			clearLCDLine(1);
@@ -183,17 +467,25 @@ task usercontrol()
 		motor[LDrive] = c3 + c4;	//drive axis
 		motor[RDrive] = c3 - c4;	//turn axis
     motor[LBucket] = c2;	//bucket axis
-
+		motor[RBucket] = c2;
     motor[LPaddle] = c1;	//paddle axit !BETA!
     motor[RPaddle] = c1;
 
 		if(vexRT[Btn5D]==1)	//arms down
+		{
 			motor[LArm] = -100;
+			motor[RArm] = -100;
+		}
 		else if(vexRT[Btn5U]==1)	//arms up
+		{
 			motor[LArm] = 100;
+			motor[RArm] = 100;
+		}
 		else
+		{
 			motor[LArm] = 0;
-
+			motor[RArm] = 0;
+		}
 		if(vexRT[Btn6D]==1)	//paddles forward
 		{
 			motor[LPaddle] = 127;
