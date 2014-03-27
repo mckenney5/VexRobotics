@@ -1,0 +1,17 @@
+*Foward for ~1742.347292105388416
+
+*Rotate 180 degrees
+
+*Forward for ~8566.54085285148416
+
+*Lift Arms
+
+*Rotate 45 degrees right
+
+*Forward for ~1379.358272916759296 (half inch away from goal)
+
+*Dump Balls
+
+DONE
+
+Total Points (15)
