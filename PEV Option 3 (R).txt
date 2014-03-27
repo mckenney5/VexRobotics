@@ -11,9 +11,9 @@ This is all theroretical until we open the course up in CAD
 
 
 
-*Forward for: (Just this part needs to be recalculated due to the size of the robot)
-~4355.868230263474176 ticks (Starting Before Bump)
-~1524.553880592210944 ticks (Starting After Bump)
+*Forward for:
+~3920.281407237125504 ticks (Starting Before Bump)
+~1960.140703618559616 ticks (Starting After Bump)
 
 *Raise Arms
 
