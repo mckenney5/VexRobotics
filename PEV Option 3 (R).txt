@@ -11,7 +11,7 @@ This is all theroretical until we open the course up in CAD
 
 
 
-*Forward for:
+*Forward for: (Just this part needs to be recalculated due to the size of the robot)
 ~4355.868230263474176 ticks (Starting Before Bump)
 ~1524.553880592210944 ticks (Starting After Bump)
 
@@ -46,3 +46,5 @@ This is all theroretical until we open the course up in CAD
 *Dump preload
 
 DONE
+
+Total Points (10 / 15)
