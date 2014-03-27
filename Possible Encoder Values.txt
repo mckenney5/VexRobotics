@@ -11,7 +11,9 @@ This is all theroretical until we open the course up in CAD
 
 
 
-*Forward for ~4355.868230263474176 ticks
+*Forward for:
+~4355.868230263474176 ticks (Starting Before Bump)
+~1524.553880592210944 ticks (Starting After Bump)
 
 *Raise Arms
 
