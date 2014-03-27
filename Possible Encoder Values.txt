@@ -1,0 +1,42 @@
+Option 3:
+
+***************
+     NOTE     
+***************
+I had to modify our tracked course due to the support beam being under the 2nd ball.
+
+This is all theroretical until we open the course up in CAD
+
+
+
+
+
+*Forward for ~4355.868230263474176 ticks
+
+*Raise Arms
+
+*Forward for ~871.173646052697344 ticks (and smack the ball)
+
+*Backwards for ~ NEGATIVE 871.173646052697344 ticks
+
+*Rotate 90 degrees left
+
+*Forward for ~2613.520938158079488 ticks
+
+*Rotate 90 degrees right (back to forward facing)
+
+*Forward for ~798.575842214971520 ticks (be careful of support beam and smack the ball)
+
+*Backwards for ~ NEGATIVE 798.575842214971520  ticks
+
+*Rotate 45 degrees right
+
+*Forward for ~1016.369253728142720 ticks (lets hope we clear the beam)
+
+*Rotate so it's 45 degrees left (aka 315 degrees)
+
+*Forward for ~1960.140703618559616 ticks (0.1 inches from goal)
+
+*Dump preload
+
+DONE
