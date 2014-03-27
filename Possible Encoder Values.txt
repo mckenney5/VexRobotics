@@ -25,6 +25,8 @@ This is all theroretical until we open the course up in CAD
 
 *Rotate 90 degrees right (back to forward facing)
 
+*Lower Arms
+
 *Forward for ~798.575842214971520 ticks (be careful of support beam and smack the ball)
 
 *Backwards for ~ NEGATIVE 798.575842214971520  ticks
@@ -34,6 +36,8 @@ This is all theroretical until we open the course up in CAD
 *Forward for ~1016.369253728142720 ticks (lets hope we clear the beam)
 
 *Rotate so it's 45 degrees left (aka 315 degrees)
+
+*Raise Arms
 
 *Forward for ~1960.140703618559616 ticks (0.1 inches from goal)
 
