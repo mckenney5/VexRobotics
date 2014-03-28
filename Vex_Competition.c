@@ -1,5 +1,6 @@
 #pragma config(I2C_Usage, I2C1, i2cSensors)
-#pragma config(Sensor, dgtl1,  DEncoders,      sensorTouch)
+#pragma config(Sensor, dgtl1,  DArmEncoders,   sensorTouch)
+#pragma config(Sensor, dgtl2,  DWheelEncoders, sensorTouch)
 #pragma config(Sensor, I2C_1,  encoder_RDrive, sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_2,  encoder_RArm,   sensorQuadEncoderOnI2CPort,    , AutoAssign)
 #pragma config(Sensor, I2C_3,  encoder_LArm,   sensorQuadEncoderOnI2CPort,    , AutoAssign)
@@ -52,7 +53,7 @@ void pre_auton()
 	displayNextLCDString(backupBattery);
 	sleep(2000);
 
-	while(SensorValue(DEncoders)==1)	//while jumper in port 1
+	while(SensorValue(DArmEncoders)==1)	//while jumper in port 1
 	{
 		clearLCDLine(0);
   	clearLCDLine(1);
@@ -64,6 +65,21 @@ void pre_auton()
   	displayNextLCDString("RArm = ");
   	displayLCDPos(1,7);
   	displayNextLCDNumber(nMotorEncoder[RArm]);	//RArm encoder readout
+  	if(nLCDButtons==centerButton)
+  		goto top;	//if center button pressed, hot restart program
+  }
+  while(SensorValue(DWheelEncoders)==1)	//while jumper in port 2
+	{
+		clearLCDLine(0);
+  	clearLCDLine(1);
+  	displayLCDPos(0,0);
+  	displayNextLCDString("LDrive = ");
+  	displayLCDPos(0,7);
+  	displayNextLCDNumber(nMotorEncoder[LDrive]);	//LDrive encoder readout
+  	displayLCDPos(1,0);
+  	displayNextLCDString("RDrive = ");
+  	displayLCDPos(1,7);
+  	displayNextLCDNumber(nMotorEncoder[RDrive]);	//RDrive encoder readout
   	if(nLCDButtons==centerButton)
   		goto top;	//if center button pressed, hot restart program
   }
@@ -104,6 +120,8 @@ void pre_auton()
 	clearLCDLine(1);
 	displayLCDCenteredString(1,"Selected");
 	sleep(2000);
+	if(nLCDButtons!=0)	//if any buttons pressed
+		goto top;	//hot restart program
 																										//$$End Autonomous Selection$$
 	clearLCDLine(0);
   clearLCDLine(1);
@@ -112,8 +130,8 @@ void pre_auton()
 	displayLCDString(1, 0, "Backup: ");
 	displayNextLCDString(backupBattery);
 	sleep(2000);
-	if(nLCDButtons!=0)
-		goto top;
+	if(nLCDButtons!=0)	//if any buttons pressed
+		goto top;	//hot restart program
 	bLCDBacklight = false;
 }
 task autonomous()
@@ -504,7 +522,7 @@ task usercontrol()
 			motor[RPaddle] = 0;
 		}
 																										//$$End Assignments$$
-		if(SensorValue(DEncoders)==1)
+		if(SensorValue(DArmEncoders)==1)	//if jumper in port 1
 		{
 			clearLCDLine(0);
   		clearLCDLine(1);
@@ -515,5 +533,16 @@ task usercontrol()
   		displayNextLCDString("RArm = ");
   		displayNextLCDNumber(nMotorEncoder[RArm]);	//RArm encoder readout
   	}
+  	if(SensorValue(DWheelEncoders)==1)	//if jumper in port 2
+		{
+			clearLCDLine(0);
+  		clearLCDLine(1);
+  		displayLCDPos(0,0);
+  		displayNextLCDString("LDrive = ");
+  		displayNextLCDNumber(nMotorEncoder[LDrive]);	//LDrive encoder readout
+  		displayLCDPos(1,0);
+  		displayNextLCDString("RDrive = ");
+  		displayNextLCDNumber(nMotorEncoder[RDrive]);	//RDrive encoder readout
+ 	 }
 	} //Infinite loop
 }		//End of driver control
