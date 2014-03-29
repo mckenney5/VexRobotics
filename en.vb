@@ -7,7 +7,7 @@ Public Shared Sub Main()
 		Dim D As Integer
 		Dim C As Decimal = "12.9590697"
 		Dim Wr As Decimal
-		Dim Ma As Decimal = "0.6666666666666667"
+		Dim Ma As Decimal = 2/3
 		Dim Mr As Decimal
 		Dim Mt As Decimal = "627.2"
 		Dim E
