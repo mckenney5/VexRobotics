@@ -10,7 +10,7 @@
 #pragma config(Motor,  port1,           LDrive,        tmotorVex393_HBridge, PIDControl, encoderPort, I2C_4)
 #pragma config(Motor,  port2,           LArm,          tmotorVex393_MC29, PIDControl, encoderPort, I2C_3)
 #pragma config(Motor,  port3,           RArm,          tmotorVex393_MC29, PIDControl, reversed, encoderPort, I2C_2)
-#pragma config(Motor,  port4,           Bucket,        tmotorVex393_MC29, PIDControl)
+#pragma config(Motor,  port4,           Bucket,        tmotorVex393_MC29, PIDControl, encoderPort, I2C_5)
 #pragma config(Motor,  port5,           LPaddle,       tmotorVex269_MC29, openLoop)
 #pragma config(Motor,  port6,           RPaddle,       tmotorVex269_MC29, openLoop, reversed)
 #pragma config(Motor,  port10,          RDrive,        tmotorVex393_HBridge, PIDControl, reversed, encoderPort, I2C_1)
@@ -29,6 +29,7 @@ const int leftButton = 1,centerButton = 2, rightButton = 4;	//lcd button variabl
 string mainBattery, backupBattery;	//battery display strings
 const int ths = 15; //Threshold Variable
 int c1 = 0, c2 = 0, c3 = 0, c4 = 0;	//Deadzone Variables
+string ProgramName = "Rear Red";
 
 void pre_auton()
 {
@@ -88,7 +89,7 @@ void pre_auton()
 	clearLCDLine(0);
   clearLCDLine(1);
 	displayLCDPos(0,0);
-	displayNextLCDString("Autonomous ");
+	displayNextLCDString(ProgramName);
 	displayLCDPos(0,11);
 	displayNextLCDNumber(aselect);
 	displayLCDCenteredString(1,"<      X     >");
@@ -101,8 +102,13 @@ void pre_auton()
 			aselect++;	//go to next auto program
 			clearLCDLine(0);
 			displayLCDPos(0,0);
-			displayNextLCDString("Autonomous ");
-			displayLCDPos(0,11);
+			if (aselect == 0) ProgramName = "Rear Red";
+			else if (aselect == 1) ProgramName = "Front Red";
+			else if (aselect == 2) ProgramName = "Rear Blue";
+			else if (aselect == 3) ProgramName = "Front Blue";
+			else if (aselect == 4) ProgramName = "Drive Test";
+			else ProgramName = "";
+			displayNextLCDString(ProgramName);
 			displayNextLCDNumber(aselect);
 			while(nLCDButtons==rightButton){}
 		}
@@ -111,7 +117,13 @@ void pre_auton()
 			clearTimer(T1);	//reset time limit
 			clearLCDLine(0);
 			displayLCDPos(0,0);
-			displayNextLCDString("Autonomous ");
+			if (aselect == 0) ProgramName = "Rear Red";
+			else if (aselect == 1) ProgramName = "Front Red";
+			else if (aselect == 2) ProgramName = "Rear Blue";
+			else if (aselect == 3) ProgramName = "Front Blue";
+			else if (aselect == 4) ProgramName = "Drive Test";
+			else ProgramName = "NONE";
+			displayNextLCDString(ProgramName);
 			aselect--;	//go to previous auto program
 			displayLCDPos(0,11);
 			displayNextLCDNumber(aselect);
@@ -119,7 +131,9 @@ void pre_auton()
 		}
 	}
 	clearLCDLine(1);
-	displayLCDCenteredString(1,"Selected");
+	displayLCDCenteredString(1,"Selected ");
+	displayLCDPos(1,9);
+	displayLCDCenteredString(1,ProgramName);
 	sleep(2000);
 	if(nLCDButtons!=0)	//if any buttons pressed
 		goto top;	//hot restart program
@@ -485,19 +499,20 @@ task usercontrol()
 																										//$Controller Assignments$
 		motor[LDrive] = c3 + c4;	//drive axis
 		motor[RDrive] = c3 - c4;	//turn axis
-    motor[Bucket] = c2;	//bucket axis
-		motor[Bucket] = c2;
+    motor[Bucket] = c2/4;	//bucket axis
     motor[LPaddle] = c1;	//paddle axit !BETA!
     motor[RPaddle] = c1;
 
+    //setMotorTarget(RArm,nMotorEncoder[LArm],120,true);
+
 		if(vexRT[Btn5D]==1)	//arms down
 		{
-			motor[LArm] = -100;
+			motor[LArm] = -120;
 			motor[RArm] = -100;
 		}
 		else if(vexRT[Btn5U]==1)	//arms up
 		{
-			motor[LArm] = 100;
+			motor[LArm] = 120;
 			motor[RArm] = 100;
 		}
 		else
@@ -522,7 +537,7 @@ task usercontrol()
 		}
 																										//$$End Assignments$$
 
-		if(SensorValue(DArmEncoders)==1)	//if jumper in port 1
+		if(SensorValue(DArmEncoders)==0)	//if jumper isnt in port 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		{
 			clearLCDLine(0);
   		clearLCDLine(1);
@@ -543,6 +558,11 @@ task usercontrol()
   		displayLCDPos(1,0);
   		displayNextLCDString("RDrive = ");
   		displayNextLCDNumber(nMotorEncoder[RDrive]);	//RDrive encoder readout
+ 	 }
+ 	 if(vexRT[Btn7D] == 1)
+ 	 {
+ 	 		nMotorEncoder[LArm] = 0;
+ 	 		nMotorEncoder[RArm] = 0;
  	 }
 	} //Infinite loop
 }	//End of driver control
