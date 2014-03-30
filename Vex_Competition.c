@@ -87,7 +87,7 @@ void pre_auton()
 	displayNextLCDString(backupBattery);
 	sleep(2000);
 
-	while(SensorValue(DArmEncoders)==1)	//while jumper in port 1
+	/*while(SensorValue(DArmEncoders)==1)	//while jumper in port 1
 	{
 		clearLCDLine(0);
   	clearLCDLine(1);
@@ -116,13 +116,12 @@ void pre_auton()
   	displayNextLCDNumber(nMotorEncoder[RDrive]);	//RDrive encoder readout
   	if(nLCDButtons==centerButton)
   		goto top;	//if center button pressed, hot restart program
-  }
+  }*/
 																										//$Autonomous Program Selection$
 	clearLCDLine(0);
   clearLCDLine(1);
 	displayLCDPos(0,0);
 	displayNextLCDString(ProgramName);
-	displayLCDPos(0,11);
 	displayNextLCDNumber(aselect);
 	displayLCDCenteredString(1,"<      X     >");
 	clearTimer(T1);
@@ -154,7 +153,10 @@ void pre_auton()
 	displayLCDCenteredString(1,"Selected ");
 	sleep(2000);
 	if(nLCDButtons!=0)	//if any buttons pressed
+	{
+		while(nLCDButtons!=0){}	//wait for release
 		goto top;	//hot restart program
+	}
 																										//$$End Autonomous Selection$$
 	clearLCDLine(0);
   clearLCDLine(1);
@@ -166,7 +168,10 @@ void pre_auton()
 	displayNextLCDString(backupBattery);
 	sleep(2000);
 	if(nLCDButtons!=0)	//if any buttons pressed
+	{
+		while(nLCDButtons!=0){}	//wait for release
 		goto top;	//hot restart program
+	}
 	bLCDBacklight = false;
 }
 task autonomous()
