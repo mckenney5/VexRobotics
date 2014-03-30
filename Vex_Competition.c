@@ -30,6 +30,39 @@ const int ths = 15; //Threshold Variable
 int c1 = 0, c2 = 0, c3 = 0, c4 = 0;	//Deadzone Variables
 string ProgramName = "Rear Red";
 
+task ArmEncoders()
+{
+	clearLCDLine(0);
+ 	clearLCDLine(1);
+  displayLCDPos(0,0);
+  displayNextLCDString("LArm = ");
+  displayNextLCDNumber(nMotorEncoder[LArm]);	//LArm encoder readout
+  displayLCDPos(1,0);
+  displayNextLCDString("RArm = ");
+  displayNextLCDNumber(nMotorEncoder[RArm]);	//RArm encoder readout
+  if(vexRT[Btn7D] == 1)	//reset encoders
+ 	{
+ 	 	nMotorEncoder[LArm] = 0;
+ 	 	nMotorEncoder[RArm] = 0;
+ 	}
+}
+task WheelEncoders()
+{
+	clearLCDLine(0);
+  clearLCDLine(1);
+  displayLCDPos(0,0);
+  displayNextLCDString("LDrive = ");
+  displayNextLCDNumber(nMotorEncoder[LDrive]);	//LDrive encoder readout
+  displayLCDPos(1,0);
+  displayNextLCDString("RDrive = ");
+  displayNextLCDNumber(nMotorEncoder[RDrive]);	//RDrive encoder readout
+  if(vexRT[Btn8D] == 1)	//reset encoders
+ 	{
+ 	 	nMotorEncoder[LDrive] = 0;
+ 	 	nMotorEncoder[RDrive] = 0;
+ 	}
+}
+
 void pre_auton()
 {
   bStopTasksBetweenModes = true; 	//Set bStopTasksBetweenModes to false to keep user created tasks running
@@ -468,6 +501,10 @@ task autonomous()
 
 task usercontrol()
 {
+	if(SensorValue(DArmEncoders)==1)	//if jumper is in port 1
+		startTask(ArmEncoders);
+	else if(SensorValue(DWheelEncoders)==1)
+		startTask(WheelEncoders);
 	while(true)	//Infinite Loop
 	{
 																										//$Calculate Deadzones$
@@ -492,7 +529,10 @@ task usercontrol()
 																										//$Controller Assignments$
 		motor[LDrive] = c3 + c4;	//drive axis
 		motor[RDrive] = c3 - c4;	//turn axis
-    motor[Bucket] = c2/4;	//bucket axis
+		if(c2>100)
+			motor[Bucket] = c2;
+		else
+			motor[Bucket] = c2/4;	//bucket axis
     motor[LPaddle] = c1;	//paddle axit !BETA!
     motor[RPaddle] = c1;
 
@@ -501,12 +541,12 @@ task usercontrol()
 		if(vexRT[Btn5D]==1)	//arms down
 		{
 			motor[LArm] = -120;
-			motor[RArm] = -100;
+			motor[RArm] = -120;
 		}
 		else if(vexRT[Btn5U]==1)	//arms up
 		{
 			motor[LArm] = 120;
-			motor[RArm] = 100;
+			motor[RArm] = 120;
 		}
 		else
 		{
@@ -529,33 +569,5 @@ task usercontrol()
 			motor[RPaddle] = 0;
 		}
 																										//$$End Assignments$$
-
-		if(SensorValue(DArmEncoders)==1)	//if jumper is in port 1
-		{
-			clearLCDLine(0);
-  		clearLCDLine(1);
-  		displayLCDPos(0,0);
-  		displayNextLCDString("LArm = ");
-  		displayNextLCDNumber(nMotorEncoder[LArm]);	//LArm encoder readout
-  		displayLCDPos(1,0);
-  		displayNextLCDString("RArm = ");
-  		displayNextLCDNumber(nMotorEncoder[RArm]);	//RArm encoder readout
-  	}
-  	if(SensorValue(DWheelEncoders)==1)	//if jumper in port 2
-		{
-			clearLCDLine(0);
-  		clearLCDLine(1);
-  		displayLCDPos(0,0);
-  		displayNextLCDString("LDrive = ");
-  		displayNextLCDNumber(nMotorEncoder[LDrive]);	//LDrive encoder readout
-  		displayLCDPos(1,0);
-  		displayNextLCDString("RDrive = ");
-  		displayNextLCDNumber(nMotorEncoder[RDrive]);	//RDrive encoder readout
- 	 }
- 	 if(vexRT[Btn7D] == 1)
- 	 {
- 	 		nMotorEncoder[LArm] = 0;
- 	 		nMotorEncoder[RArm] = 0;
- 	 }
 	} //Infinite loop
 }	//End of driver control
