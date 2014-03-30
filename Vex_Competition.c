@@ -457,7 +457,7 @@ task autonomous()
 			clearLCDLine(1);
 			displayLCDPos(0,0);
 			displayNextLCDString("Moving bot 2ft!");
-			moveMotorTarget(LDrive,1742.3472921053884531850307125,50,true);	//drive forward at the new encoder
+			moveMotorTarget(LDrive,1742.3472921053884531850307125,50,true);	//drive forward at the new encoder rate
 			moveMotorTarget(RDrive,1742.3472921053884531850307125,50,true);
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
@@ -544,7 +544,7 @@ task usercontrol()
 		}
 																										//$$End Assignments$$
 
-		if(SensorValue(DArmEncoders)==0)	//if jumper isnt in port 1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		if(SensorValue(DArmEncoders)==1)	//if jumper is in port 1
 		{
 			clearLCDLine(0);
   		clearLCDLine(1);
@@ -555,7 +555,7 @@ task usercontrol()
   		displayNextLCDString("RArm = ");
   		displayNextLCDNumber(nMotorEncoder[RArm]);	//RArm encoder readout
   	}
-  	if(SensorValue(DWheelEncoders)==1)	//if jumper in port 2
+  	if(SensorValue(DWheelEncoders)==2)	//if jumper in port 2
 		{
 			clearLCDLine(0);
   		clearLCDLine(1);
