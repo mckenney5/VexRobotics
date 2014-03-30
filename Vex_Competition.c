@@ -453,8 +453,14 @@ task autonomous()
 		break;
 
 		case 4:
-			motor[LDrive] = 127;
-			motor[RDrive] = 127;
+			clearLCDLine(0);
+			clearLCDLine(1);
+			displayLCDPos(0,0);
+			displayNextLCDString("Moving bot 2ft!");
+			moveMotorTarget(LDrive,1742.3472921053884531850307125,50,true);	//drive forward at the new encoder
+			moveMotorTarget(RDrive,1742.3472921053884531850307125,50,true);
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
 		break;
 
 		default:
