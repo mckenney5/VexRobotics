@@ -107,8 +107,9 @@ void pre_auton()
 			else if (aselect == 2) ProgramName = "Rear Blue";
 			else if (aselect == 3) ProgramName = "Front Blue";
 			else if (aselect == 4) ProgramName = "Drive Test";
-			else ProgramName = "";
+			else ProgramName = "NONE";
 			displayNextLCDString(ProgramName);
+			displayLCDPos(0,12);
 			displayNextLCDNumber(aselect);
 			while(nLCDButtons==rightButton){}
 		}
@@ -125,7 +126,7 @@ void pre_auton()
 			else ProgramName = "NONE";
 			displayNextLCDString(ProgramName);
 			aselect--;	//go to previous auto program
-			displayLCDPos(0,11);
+			displayLCDPos(0,12);
 			displayNextLCDNumber(aselect);
 			while(nLCDButtons==leftButton){}
 		}
