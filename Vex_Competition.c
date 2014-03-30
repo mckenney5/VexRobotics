@@ -99,41 +99,26 @@ void pre_auton()
 		{
 			clearTimer(T1);	//reset time limit
 			aselect++;	//go to next auto program
-			clearLCDLine(0);
-			displayLCDPos(0,0);
-			if (aselect == 0) ProgramName = "Rear Red";
-			else if (aselect == 1) ProgramName = "Front Red";
-			else if (aselect == 2) ProgramName = "Rear Blue";
-			else if (aselect == 3) ProgramName = "Front Blue";
-			else if (aselect == 4) ProgramName = "Drive Test";
-			else ProgramName = "NONE";
-			displayNextLCDString(ProgramName);
-			displayLCDPos(0,12);
-			displayNextLCDNumber(aselect);
-			while(nLCDButtons==rightButton){}
 		}
 		else if(nLCDButtons==leftButton)
 		{
 			clearTimer(T1);	//reset time limit
-			clearLCDLine(0);
-			displayLCDPos(0,0);
-			if (aselect == 0) ProgramName = "Rear Red";
+			aselect--;	//go to previous auto program
+		}
+			if (aselect == 0) ProgramName = "Rear Red";	//build name to be displayed
 			else if (aselect == 1) ProgramName = "Front Red";
 			else if (aselect == 2) ProgramName = "Rear Blue";
 			else if (aselect == 3) ProgramName = "Front Blue";
-			else if (aselect == 4) ProgramName = "Drive Test";
-			else ProgramName = "NONE";
-			displayNextLCDString(ProgramName);
-			aselect--;	//go to previous auto program
-			displayLCDPos(0,12);
-			displayNextLCDNumber(aselect);
-			while(nLCDButtons==leftButton){}
-		}
+			else ProgramName = "Test/Default";
+
+			clearLCDLine(0);
+			displayLCDPos(0,0);
+			displayNextLCDString(ProgramName);	//display name
+			displayNextLCDNumber(aselect);	//display number
+			while(nLCDButtons!=0){}	//wait for button release
 	}
 	clearLCDLine(1);
 	displayLCDCenteredString(1,"Selected ");
-	displayLCDPos(1,9);
-	displayLCDCenteredString(1,ProgramName);
 	sleep(2000);
 	if(nLCDButtons!=0)	//if any buttons pressed
 		goto top;	//hot restart program
@@ -141,8 +126,10 @@ void pre_auton()
 	clearLCDLine(0);
   clearLCDLine(1);
   displayLCDString(0, 0, "Primary: ");
+	sprintf(mainBattery, "%1.2f%c", nImmediateBatteryLevel/1000.0,'V');
 	displayNextLCDString(mainBattery);
 	displayLCDString(1, 0, "Backup: ");
+	sprintf(backupBattery, "%1.2f%c", BackupBatteryLevel/1000.0, 'V');
 	displayNextLCDString(backupBattery);
 	sleep(2000);
 	if(nLCDButtons!=0)	//if any buttons pressed
@@ -554,7 +541,7 @@ task usercontrol()
   		displayNextLCDString("RArm = ");
   		displayNextLCDNumber(nMotorEncoder[RArm]);	//RArm encoder readout
   	}
-  	if(SensorValue(DWheelEncoders)==2)	//if jumper in port 2
+  	if(SensorValue(DWheelEncoders)==1)	//if jumper in port 2
 		{
 			clearLCDLine(0);
   		clearLCDLine(1);
