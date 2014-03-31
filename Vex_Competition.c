@@ -148,7 +148,7 @@ void pre_auton()
 			else if (aselect == 2) ProgramName = "Rear Blue ";
 			else if (aselect == 3) ProgramName = "Front Blue ";
 			else if (aselect == 4) ProgramName = "Drive Test ";
-			else ProgramName = "Default";
+			else ProgramName = "Default ";
 
 
 			clearLCDLine(0);
@@ -167,7 +167,7 @@ void pre_auton()
 			else if (aselect == 2) ProgramName = "Rear Blue ";
 			else if (aselect == 3) ProgramName = "Front Blue ";
 			else if (aselect == 4) ProgramName = "Drive Test ";
-			else ProgramName = "Default";
+			else ProgramName = "Default ";
 
 			clearLCDLine(0);
 			displayLCDPos(0,0);
@@ -177,7 +177,7 @@ void pre_auton()
 		}
 	}
 	clearLCDLine(1);
-	displayLCDCenteredString(1,"Selected ");
+	displayLCDCenteredString(1,"Selected");
 	sleep(2000);
 	if(nLCDButtons!=0)	//if any buttons pressed
 	{
@@ -504,8 +504,21 @@ task autonomous()
 			clearLCDLine(1);
 			displayLCDPos(0,0);
 			displayNextLCDString("Moving bot 2ft!");
-			moveMotorTarget(LDrive,1742.3472921053884531850307125,50,true);	//drive forward at the new encoder rate
-			moveMotorTarget(RDrive,1742.3472921053884531850307125,50,true);
+			displayLCDCenteredString(1,"4");
+			moveMotorTarget(LDrive,1742,100,true);	//drive forward at the new encoder rate
+			moveMotorTarget(RDrive,1742,100,true);
+			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
+			while(getMotorTargetCompleted(RDrive)!=1){}
+		break;
+
+		case 5:
+			clearLCDLine(0);
+			clearLCDLine(1);
+			displayLCDPos(0,0);
+			displayNextLCDString("Moving bot 2ft!");
+			displayLCDCenteredString(1,"5");
+			setMotorTarget(LDrive,1742,100,true);	//forward
+			setMotorTarget(RDrive,1742,100,true);	//forward
 			while(getMotorTargetCompleted(LDrive)!=1){}	//wait for drive completion
 			while(getMotorTargetCompleted(RDrive)!=1){}
 		break;
