@@ -137,10 +137,10 @@ void pre_auton()
 			clearTimer(T1);	//reset time limit
 			aselect--;	//go to previous auto program
 		}
-			if (aselect == 0) ProgramName = "Rear Red";	//build name to be displayed
-			else if (aselect == 1) ProgramName = "Front Red";
-			else if (aselect == 2) ProgramName = "Rear Blue";
-			else if (aselect == 3) ProgramName = "Front Blue";
+			if (aselect == 0) ProgramName = "Rear Red ";	//build name to be displayed
+			else if (aselect == 1) ProgramName = "Front Red ";
+			else if (aselect == 2) ProgramName = "Rear Blue ";
+			else if (aselect == 3) ProgramName = "Front Blue ";
 			else ProgramName = "Test/Default";
 
 			clearLCDLine(0);
