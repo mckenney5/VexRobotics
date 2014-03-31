@@ -193,7 +193,7 @@ task autonomous()
 	reset:
 	switch(aselect)
 	{
-		case 0:	//rear left starting tile
+		case 0:	//rear left/red starting tile
 			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
 			moveMotorTarget(RArm,000,100,true);
 
@@ -257,9 +257,8 @@ task autonomous()
 			clearLCDLine(0);
 			clearLCDLine(1);
 			displayLCDPos(0,0);
-			displayNextLCDString("Auto ");
+			displayNextLCDString(ProgramName);
 			displayNextLCDNumber(aselect);
-			displayNextLCDString("Complete");
 			displayLCDPos(1,0);
 			displayNextLCDString("Time: ");
 			displayNextLCDNumber(time1[T2]/1000);	//display elapsed time for autonomous period
@@ -267,7 +266,7 @@ task autonomous()
 			bLCDBacklight = false;
 		break;
 
-		case 1:	//front left starting tile
+		case 1:	//front left/red starting tile
 			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
 			moveMotorTarget(RArm,000,100,true);
 
@@ -331,9 +330,8 @@ task autonomous()
 			clearLCDLine(0);
 			clearLCDLine(1);
 			displayLCDPos(0,0);
-			displayNextLCDString("Auto ");
+			displayNextLCDString(ProgramName);
 			displayNextLCDNumber(aselect);
-			displayNextLCDString("Complete");
 			displayLCDPos(1,0);
 			displayNextLCDString("Time: ");
 			displayNextLCDNumber(time1[T2]/1000);	//display elapsed time for autonomous period
@@ -341,7 +339,7 @@ task autonomous()
 			bLCDBacklight = false;
 		break;
 
-		case 2:	//rear right starting tile
+		case 2:	//rear right/blue starting tile
 			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
 			moveMotorTarget(RArm,000,100,true);
 
@@ -405,9 +403,8 @@ task autonomous()
 			clearLCDLine(0);
 			clearLCDLine(1);
 			displayLCDPos(0,0);
-			displayNextLCDString("Auto ");
+			displayNextLCDString(ProgramName);
 			displayNextLCDNumber(aselect);
-			displayNextLCDString("Complete");
 			displayLCDPos(1,0);
 			displayNextLCDString("Time: ");
 			displayNextLCDNumber(time1[T2]/1000);	//display elapsed time for autonomous period
@@ -415,7 +412,7 @@ task autonomous()
 			bLCDBacklight = false;
 		break;
 
-		case 3:	//front right starting tile
+		case 3:	//front right/blue starting tile
 			moveMotorTarget(LArm,000,100,true);	//raise arm to hit large balls
 			moveMotorTarget(RArm,000,100,true);
 
@@ -479,9 +476,8 @@ task autonomous()
 			clearLCDLine(0);
 			clearLCDLine(1);
 			displayLCDPos(0,0);
-			displayNextLCDString("Auto ");
+			displayNextLCDString(ProgramName);
 			displayNextLCDNumber(aselect);
-			displayNextLCDString("Complete");
 			displayLCDPos(1,0);
 			displayNextLCDString("Time: ");
 			displayNextLCDNumber(time1[T2]/1000);	//display elapsed time for autonomous period
@@ -506,7 +502,7 @@ task autonomous()
 			clearLCDLine(0);
 			clearLCDLine(1);
 			displayLCDPos(0,0);
-			displayNextLCDString("Autonomous ");
+			displayNextLCDString(ProgramName);
 			displayNextLCDNumber(aselect);
 			displayLCDCenteredString(1,"Running as Default");
 			goto reset;	//restart autonomous segment
