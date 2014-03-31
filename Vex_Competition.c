@@ -63,6 +63,16 @@ task WheelEncoders()
  	}
 }
 
+task TaskChose()
+{
+			if (aselect == 0) ProgramName = "Rear Red ";	//build name to be displayed
+			else if (aselect == 1) ProgramName = "Front Red ";
+			else if (aselect == 2) ProgramName = "Rear Blue ";
+			else if (aselect == 3) ProgramName = "Front Blue ";
+			else if (aselect == 4) ProgramName = "Drive Test ";
+			else ProgramName = "Default";
+}
+
 void pre_auton()
 {
   bStopTasksBetweenModes = true; 	//Set bStopTasksBetweenModes to false to keep user created tasks running
@@ -131,12 +141,15 @@ void pre_auton()
 		{
 			clearTimer(T1);	//reset time limit
 			aselect++;	//go to next auto program
-
+			
+			
 			if (aselect == 0) ProgramName = "Rear Red ";	//build name to be displayed
 			else if (aselect == 1) ProgramName = "Front Red ";
 			else if (aselect == 2) ProgramName = "Rear Blue ";
 			else if (aselect == 3) ProgramName = "Front Blue ";
-			else ProgramName = "Test/Default";
+			else if (aselect == 4) ProgramName = "Drive Test ";
+			else ProgramName = "Default";
+			
 
 			clearLCDLine(0);
 			displayLCDPos(0,0);
@@ -148,13 +161,14 @@ void pre_auton()
 		{
 			clearTimer(T1);	//reset time limit
 			aselect--;	//go to previous auto program
-
+			
 			if (aselect == 0) ProgramName = "Rear Red ";	//build name to be displayed
 			else if (aselect == 1) ProgramName = "Front Red ";
 			else if (aselect == 2) ProgramName = "Rear Blue ";
 			else if (aselect == 3) ProgramName = "Front Blue ";
-			else ProgramName = "Test/Default";
-
+			else if (aselect == 4) ProgramName = "Drive Test ";
+			else ProgramName = "Default";
+			
 			clearLCDLine(0);
 			displayLCDPos(0,0);
 			displayNextLCDString(ProgramName);	//display name
