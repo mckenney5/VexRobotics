@@ -24,7 +24,7 @@
 //////////////////////////////////////////
 
 int aselect = 0; //Autonomous Switch Variable
-const int leftButton = 1,centerButton = 2, rightButton = 4;	//lcd button variables
+const int noButton = 0,leftButton = 1,centerButton = 2,rightButton = 4;	//lcd button variables
 string mainBattery, backupBattery;	//battery display strings
 const int ths = 15; //Threshold Variable
 int c1 = 0, c2 = 0, c3 = 0, c4 = 0;	//Deadzone Variables
@@ -131,12 +131,7 @@ void pre_auton()
 		{
 			clearTimer(T1);	//reset time limit
 			aselect++;	//go to next auto program
-		}
-		else if(nLCDButtons==leftButton)
-		{
-			clearTimer(T1);	//reset time limit
-			aselect--;	//go to previous auto program
-		}
+
 			if (aselect == 0) ProgramName = "Rear Red ";	//build name to be displayed
 			else if (aselect == 1) ProgramName = "Front Red ";
 			else if (aselect == 2) ProgramName = "Rear Blue ";
@@ -147,14 +142,32 @@ void pre_auton()
 			displayLCDPos(0,0);
 			displayNextLCDString(ProgramName);	//display name
 			displayNextLCDNumber(aselect);	//display number
-			while(nLCDButtons!=0){}	//wait for button release
+			while(nLCDButtons!=noButton){}	//wait for button release
+		}
+		else if(nLCDButtons==leftButton)
+		{
+			clearTimer(T1);	//reset time limit
+			aselect--;	//go to previous auto program
+
+			if (aselect == 0) ProgramName = "Rear Red ";	//build name to be displayed
+			else if (aselect == 1) ProgramName = "Front Red ";
+			else if (aselect == 2) ProgramName = "Rear Blue ";
+			else if (aselect == 3) ProgramName = "Front Blue ";
+			else ProgramName = "Test/Default";
+
+			clearLCDLine(0);
+			displayLCDPos(0,0);
+			displayNextLCDString(ProgramName);	//display name
+			displayNextLCDNumber(aselect);	//display number
+			while(nLCDButtons!=noButton){}	//wait for button release
+		}
 	}
 	clearLCDLine(1);
 	displayLCDCenteredString(1,"Selected ");
 	sleep(2000);
 	if(nLCDButtons!=0)	//if any buttons pressed
 	{
-		while(nLCDButtons!=0){}	//wait for release
+		while(nLCDButtons!=noButton){}	//wait for release
 		goto top;	//hot restart program
 	}
 																										//$$End Autonomous Selection$$
@@ -167,9 +180,9 @@ void pre_auton()
 	sprintf(backupBattery, "%1.2f%c", BackupBatteryLevel/1000.0, 'V');
 	displayNextLCDString(backupBattery);
 	sleep(2000);
-	if(nLCDButtons!=0)	//if any buttons pressed
+	if(nLCDButtons!=noButton)	//if any buttons pressed
 	{
-		while(nLCDButtons!=0){}	//wait for release
+		while(nLCDButtons!=noButton){}	//wait for release
 		goto top;	//hot restart program
 	}
 	bLCDBacklight = false;
@@ -494,12 +507,11 @@ task autonomous()
 			clearLCDLine(1);
 			displayLCDPos(0,0);
 			displayNextLCDString("Autonomous ");
-			displayLCDPos(0,11);
 			displayNextLCDNumber(aselect);
 			displayLCDCenteredString(1,"Running as Default");
-			goto reset;
-			UserControlCodePlaceholderForTesting();	//remove pesky compiler warnings
-			AutonomousCodePlaceholderForTesting();	//remove pesky compiler warnings
+			goto reset;	//restart autonomous segment
+			UserControlCodePlaceholderForTesting();	//remove pesky compiler warnings, this line will never run
+			AutonomousCodePlaceholderForTesting();	//remove pesky compiler warnings, this line will never run
 		break;
 	}
 }	//end of autonomous
