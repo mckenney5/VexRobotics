@@ -14,7 +14,7 @@ Public Shared Sub Main()
 		Console.Write("> ")
 		D = Console.Readline()
 		Console.WriteLine("Computing...")
-		Wr = D / C
+		Wr = C / D
 		Mr = Wr / Ma
 		E = Mr * Mt
 		Console.Writeline("Encoder Tics: " & E)
