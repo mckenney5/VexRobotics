@@ -1,4 +1,4 @@
-int autonProgramSelect = 0; //Autonomous Switch Variable
+int autonProgramSelect = 0; //Autonomous Switch Variables
 const int noButton = 0, leftButton = 1, centerButton = 2, rightButton = 4;	//lcd button variables
 string mainBattery, backupBattery;	//battery display strings
 string program0 = "Program";
@@ -11,7 +11,7 @@ string program6 = "Program";
 string program7 = "Program";
 string program8 = "Program";
 string program9 = "Program";
-task lcdScreen();
+task lcdScreen()
 {
 	while(true)
 	{
@@ -56,7 +56,7 @@ task lcdScreen();
 					else displayNextLCDString("Program");	//display "Program" if autonProgramSelect is out of range
 					displayNextLCDString(" ");
 					displayNextLCDNumber(autonProgramSelect);	//display program number
-					while(nLCDButtons==rightButton){}	//wait for release
+					while(nLCDButtons!=noButton){}	//wait for release
 				}
 				else if(nLCDButtons==leftButton)	//if left button pressed
 				{
@@ -76,7 +76,7 @@ task lcdScreen();
 					else displayNextLCDString("Program");	//display "Program" if autonProgramSelect is out of range
 					displayNextLCDString(" ");
 					displayNextLCDNumber(autonProgramSelect);	//display program number
-					while(nLCDButtons==leftButton){}	//wait for release
+					while(nLCDButtons!=noButton){}	//wait for release
 				}
 				while(nLCDButtons==centerButton)	//while center button is held down
 				{
@@ -84,14 +84,14 @@ task lcdScreen();
   				clearLCDLine(1);
 				  displayLCDString(0, 0, "Primary: ");
 					sprintf(mainBattery, "%1.2f%c", nImmediateBatteryLevel/1000.0,'V');
-					displayNextLCDString(mainBattery);
+					displayNextLCDString(mainBattery);	//display main battery level
 					displayLCDString(1, 0, "Backup: ");
 					sprintf(backupBattery, "%1.2f%c", BackupBatteryLevel/1000.0, 'V');
-					displayNextLCDString(backupBattery);
+					displayNextLCDString(backupBattery);	//display backup battery level
 				}
 			}	//end program selection
 			bLCDBacklight = false;
 		}	//end robot disabled
 		sleep(25);
-	}
-}
+	}	//end infinite loop
+}	//end task lcdscreen

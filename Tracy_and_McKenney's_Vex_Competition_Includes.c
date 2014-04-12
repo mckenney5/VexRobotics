@@ -42,6 +42,7 @@ task autonomous();
 task usercontrol();
 
 void resetAllEncoders();
+
 task lcdScreen();
 
 // int nTimeXX = 0;

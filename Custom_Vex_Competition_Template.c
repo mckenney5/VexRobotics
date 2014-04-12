@@ -62,14 +62,14 @@ task autonomous()
 		case 9:
 
 		break;
-		default:
-			autonProgramSelect = 0;
+		default:	//this will run if selected auton program does not exist
+			autonProgramSelect = 0;	//prepare to run program 0
 			clearLCDLine(0);
 			clearLCDLine(1);
 			displayLCDPos(0,0);
-			displayNextLCDString(program0);
+			displayNextLCDString(program0);	//display name of program 0
 			displayNextLCDString(" ");
-			displayNextLCDNumber(autonProgramSelect);
+			displayNextLCDNumber(autonProgramSelect);	//display number of program 0
 			displayLCDCenteredString(1,"Running as Default");
 			goto autonReset;	//restart autonomous segment
 		break;
@@ -78,8 +78,8 @@ task autonomous()
 
 task usercontrol()
 {
-	while(true)
+	while(true)	//infinite loop
 	{
 		//driver control code here
 	}
-}	//End of driver control
+}	//end of driver control
