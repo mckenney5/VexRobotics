@@ -1,3 +1,5 @@
+task lcdScreen();	//function declared here, and not before task main, to allow for replacement/removal of one include file without affecting the other
+void prepareToRunDefaultAutonProgram(int defaultAutonProgram);	//same^
 int autonProgramSelect = 0; //Autonomous Switch Variables
 const int noButton = 0, leftButton = 1, centerButton = 2, rightButton = 4;	//lcd button variables
 string mainBattery, backupBattery;	//battery display strings
@@ -92,6 +94,17 @@ task lcdScreen()
 			}	//end program selection
 			bLCDBacklight = false;
 		}	//end robot disabled
-		sleep(25);
+		abortTimeslice();	//allow other tasks to run
 	}	//end infinite loop
 }	//end task lcdscreen
+void prepareToRunDefaultAutonProgram(int defaultAutonProgram)
+{
+	autonProgramSelect = defaultAutonProgram;	//prepare to run selected default auton program
+	clearLCDLine(0);
+	clearLCDLine(1);
+	displayLCDPos(0,0);
+	displayNextLCDString(program0);	//display name of default program
+	displayNextLCDString(" ");	//display one space
+	displayNextLCDNumber(autonProgramSelect);	//display number of default program
+	displayLCDCenteredString(1,"Running as Default");
+}

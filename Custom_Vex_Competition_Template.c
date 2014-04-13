@@ -26,51 +26,45 @@ void pre_auton()
 
 	startTask(lcdScreen);	//start lcd program selection task
 }
+
 task autonomous()
 {
 	clearTimer(T1);	//start autonomous timer
-	autonReset:
+	autonReset:	//autonomous segment restart point
 	switch(autonProgramSelect)
 	{
 		case 0:
-
+			//program0 code here
 		break;
 		case 1:
-
+			//program1 code here
 		break;
 		case 2:
-
+			//program2 code here
 		break;
 		case 3:
-
+			//program3 code here
 		break;
 		case 4:
-
+			//program4 code here
 		break;
 		case 5:
-
+			//program5 code here
 		break;
 		case 6:
-
+			//program6 code here
 		break;
 		case 7:
-
+			//program7 code here
 		break;
 		case 8:
-
+			//program8 code here
 		break;
 		case 9:
-
+			//program9 code here
 		break;
-		default:	//this will run if selected auton program does not exist
-			autonProgramSelect = 0;	//prepare to run program 0
-			clearLCDLine(0);
-			clearLCDLine(1);
-			displayLCDPos(0,0);
-			displayNextLCDString(program0);	//display name of program 0
-			displayNextLCDString(" ");
-			displayNextLCDNumber(autonProgramSelect);	//display number of program 0
-			displayLCDCenteredString(1,"Running as Default");
+		default:	//this will run if selected case does not exist
+			prepareToRunDefaultAutonProgram(0);	//prepare to run the case that matches the number here
 			goto autonReset;	//restart autonomous segment
 		break;
 	}
@@ -78,8 +72,8 @@ task autonomous()
 
 task usercontrol()
 {
-	while(true)	//infinite loop
+	while(true)	//infinite loop, place driver control code inside.
 	{
-		//driver control code here
+		sleep(0);	//placeholder for driver control code. Remove it once you have "real" code.
 	}
 }	//end of driver control

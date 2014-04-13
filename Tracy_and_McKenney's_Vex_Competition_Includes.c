@@ -43,8 +43,6 @@ task usercontrol();
 
 void resetAllEncoders();
 
-task lcdScreen();
-
 // int nTimeXX = 0;
 bool bStopTasksBetweenModes = true;
 
