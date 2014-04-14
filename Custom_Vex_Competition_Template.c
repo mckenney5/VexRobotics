@@ -9,15 +9,16 @@
 
 void pre_auton()
 {
-  bStopTasksBetweenModes = false;	//Set bStopTasksBetweenModes to true to stop all tasks immediately before and after autonomous and user control.
-  																//It is recommended to set bStopTasksBetweenModes to true right before the competition.
-	resetAllEncoders();	//Resets all motor encoders. This will not work if you are using the standard "Vex_Competition_Includes" file.
+  bStopTasksBetweenModes = false;	//Set bStopTasksBetweenModes to true to stop all tasks
+  																//immediately before and after autonomous and user control.
+  																//It is recommended to set bStopTasksBetweenModes to true before the competition.
+	resetAllEncoders();	//Resets all motor encoders. This won't work if using the standard "Vex_Competition_Includes"
 
 	program0 = "Program";
 	program1 = "Program";
 	program2 = "Program";
 	program3 = "Program";
-	program4 = "Program";	//Name your autonomous programs here. The numbers here match the case numbers in autonomous.
+	program4 = "Program";	//Name your autonomous programs here. Numbers here match the case numbers in autonomous.
 	program5 = "Program";
 	program6 = "Program";
 	program7 = "Program";
