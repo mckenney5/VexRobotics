@@ -80,7 +80,7 @@ task lcdScreen()
 					displayNextLCDNumber(autonProgramSelect);	//display program number
 					while(nLCDButtons!=noButton){}	//wait for release
 				}
-				while(nLCDButtons==centerButton)	//while center button is held down
+				else if(nLCDButtons==centerButton)	//if center button pressed
 				{
 					clearLCDLine(0);
   				clearLCDLine(1);
@@ -90,6 +90,7 @@ task lcdScreen()
 					displayLCDString(1, 0, "Backup: ");
 					sprintf(backupBattery, "%1.2f%c", BackupBatteryLevel/1000.0, 'V');
 					displayNextLCDString(backupBattery);	//display backup battery level
+					while(nLCDButtons==centerButton){}	//wait for release
 				}
 			}	//end program selection
 			bLCDBacklight = false;
