@@ -1,5 +1,5 @@
-task lcdScreen();	//function declared here, and not before task main, to allow for replacement/removal of one include file without affecting the other
-void prepareToRunDefaultAutonProgram(int defaultAutonProgram);	//same^
+task lcdScreen();	//function declared here, and not before task main, to allow for replacement/removal of one
+void prepareToRunDefaultAutonProgram(int defaultAutonProgram);	//include file without affecting the other
 int autonProgramSelect = 0; //Autonomous Switch Variables
 const int noButton = 0, leftButton = 1, centerButton = 2, rightButton = 4;	//lcd button variables
 string mainBattery, backupBattery;	//battery display strings
@@ -82,16 +82,36 @@ task lcdScreen()
 				}
 				else if(nLCDButtons==centerButton)	//if center button pressed
 				{
+					while(nLCDButtons==centerButton)	//while center button pressed
+					{
+						clearLCDLine(0);
+  					clearLCDLine(1);
+				 		displayLCDString(0, 0, "Primary: ");
+						sprintf(mainBattery, "%1.2f%c", nImmediateBatteryLevel/1000.0,'V');	//build value to be displayed
+						displayNextLCDString(mainBattery);	//display main battery level
+						displayLCDString(1, 0, "Backup: ");
+						sprintf(backupBattery, "%1.2f%c", BackupBatteryLevel/1000.0, 'V');	//build value to be displayed
+						displayNextLCDString(backupBattery);	//display backup battery level
+						sleep(25);	//wait 25ms
+					}	//end while
 					clearLCDLine(0);
   				clearLCDLine(1);
-				  displayLCDString(0, 0, "Primary: ");
-					sprintf(mainBattery, "%1.2f%c", nImmediateBatteryLevel/1000.0,'V');
-					displayNextLCDString(mainBattery);	//display main battery level
-					displayLCDString(1, 0, "Backup: ");
-					sprintf(backupBattery, "%1.2f%c", BackupBatteryLevel/1000.0, 'V');
-					displayNextLCDString(backupBattery);	//display backup battery level
-					while(nLCDButtons==centerButton){}	//wait for release
-				}
+					displayLCDPos(0,0);
+					if(autonProgramSelect==0) displayNextLCDString(program0);
+					else if(autonProgramSelect==1) displayNextLCDString(program1);
+					else if(autonProgramSelect==2) displayNextLCDString(program2);
+					else if(autonProgramSelect==3) displayNextLCDString(program3);
+					else if(autonProgramSelect==4) displayNextLCDString(program4);	//display custom program names
+					else if(autonProgramSelect==5) displayNextLCDString(program5);
+					else if(autonProgramSelect==6) displayNextLCDString(program6);
+					else if(autonProgramSelect==7) displayNextLCDString(program7);
+					else if(autonProgramSelect==8) displayNextLCDString(program8);
+					else if(autonProgramSelect==9) displayNextLCDString(program9);
+					else displayNextLCDString("Program");	//display "Program" if autonProgramSelect is out of range
+					displayNextLCDString(" ");
+					displayNextLCDNumber(autonProgramSelect);	//display program number
+					displayLCDCenteredString(1,"<     Batt     >");	//display navigation
+				}	//end battery display
 			}	//end program selection
 			bLCDBacklight = false;
 		}	//end robot disabled
