@@ -35,45 +35,44 @@ void pre_auton()
 
 task autonomous()
 {
-	clearTimer(T1);	//start autonomous timer
 	autonReset:	//autonomous segment restart point
 	switch(autonProgramSelect)
 	{
 		case 0:
 			//program0 code here
 			setMotorTarget(test, 100, 100, true);
-		break;
+			break;
 		case 1:
 			//program1 code here
-		break;
+			break;
 		case 2:
 			//program2 code here
-		break;
+			break;
 		case 3:
 			//program3 code here
-		break;
+			break;
 		case 4:
 			//program4 code here
-		break;
+			break;
 		case 5:
 			//program5 code here
-		break;
+			break;
 		case 6:
 			//program6 code here
-		break;
+			break;
 		case 7:
 			//program7 code here
-		break;
+			break;
 		case 8:
 			//program8 code here
-		break;
+			break;
 		case 9:
 			//program9 code here
-		break;
+			break;
 		default:	//this will run if selected case does not exist
 			prepareToRunDefaultAutonProgram(0);	//prepare to run the case that matches the number here
 			goto autonReset;	//restart autonomous segment
-		break;
+			break;
 	}
 }	//end of autonomous
 

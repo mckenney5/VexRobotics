@@ -1,39 +1,16 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//                       VEX Competition Control Include File
+//          Christian Tracy and Adam McKenney's VEX Custom Competition Control Include File
 //
 // This file provides control over a VEX Competition Match. It should be included in the user's
 // program with the following line located near the start of the user's program
-//        #include "VEX_Competition_Includes.h"
+//
+//        #include "Tracy_and_McKenney's_Vex_Competition_Includes.c"
+//
 // The above statement will cause this program to be included in the user's program. There's no
 // need to modify this program.
 //
-// The program displays status information on the new VEX LCD about the competition state. You don't
-// need the LCD, the program will work fine whether or not the LCD is actually provisioned.
-//
-// The status information is still useful without the LCD. The ROBOTC IDE debugger has a "remote screen"
-// that contains a copy of the status information on the LCD. YOu can use this to get a view of the
-// status of your program. The remote screen is shown with the menu command
-//   "Robot -> Debugger Windows -> VEX Remote Screen"
-//
-// The LCD is 2 lines x 16 characters. There are three display formats to look for:
-//
-//        State          Description
-//
-//    ----------------
-//   |Disabled        |  The robot is idle. This occurs before both the autonomous and user
-//   |Time mm:ss.s    |  control states. The time display is minutes and seconds it has been idle.
-//    ----------------
-//
-//    ----------------
-//   |Autonomous      |  The robot is running autonomous code.
-//   |Time mm:ss.s    |  control states. The time display is minutes and seconds it has been running.
-//    ----------------
-//
-//    ----------------
-//   |User Control    |  The robot is running user control code.
-//   |Time mm:ss.s    |  control states. The time display is minutes and seconds it has been running.
-//    ----------------
+// This file is based on the original template available by default in RobotC.
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void allMotorsOff();
 void allTasksStop();
