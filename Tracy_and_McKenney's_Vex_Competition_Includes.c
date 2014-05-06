@@ -1,16 +1,22 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//          Christian Tracy and Adam McKenney's VEX Custom Competition Control Include File
+//          Christian Tracy and Adam McKenney's Custom VEX Competition Control Include File
 //
-// This file provides control over a VEX Competition Match. It should be included in the user's
-// program with the following line located near the start of the user's program
+//	This file provides control over a VEX Competition Match. It should be included in the user's
+//	program with the following line located near the start of the user's program
 //
 //        #include "Tracy_and_McKenney's_Vex_Competition_Includes.c"
 //
-// The above statement will cause this program to be included in the user's program. There's no
-// need to modify this program.
+//	The above statement will cause this program to be included in the user's program. There's no
+//	need to modify this program.
 //
-// This file is based on the original template available by default in RobotC.
+//	This file is based on the original template available by default in RobotC. It has been modified
+//	from the default version in the following ways:
+//		Removed all interaction with the LCD screen.
+//		Altered bStopTasksBetweenModes to stop tasks every time the robot is disabled,
+//			instead of only between autonamous and usercontrol.
+//		Removed UserControlCodePlaceholderForTesting() and AutonomousCodePlaceholderForTesting().
+//		Removed displayStatusAndTime().
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void allMotorsOff();
 void allTasksStop();
@@ -225,3 +231,5 @@ static void AutonomousCodePlaceholderForTesting()
 		++nTimeXX;
 	}
 }*/
+
+//!!DON'T PLAY WITH THE VISE!!//
