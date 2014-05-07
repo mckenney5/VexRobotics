@@ -14,9 +14,10 @@
 //	from the default version in the following ways:
 //		Removed all interaction with the LCD screen.
 //		Altered bStopTasksBetweenModes to stop tasks every time the robot is disabled,
-//			instead of only between autonamous and usercontrol.
+//			instead of only between autonomous and usercontrol.
 //		Removed UserControlCodePlaceholderForTesting() and AutonomousCodePlaceholderForTesting().
 //		Removed displayStatusAndTime().
+//		Added resetAllEncoders() function. This resets all I2C motor encoders when called.
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 void allMotorsOff();
 void allTasksStop();
