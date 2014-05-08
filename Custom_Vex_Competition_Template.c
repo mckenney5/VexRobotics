@@ -30,7 +30,7 @@ void pre_auton()
 	program8 = "Program";
 	program9 = "Program";
 
-	startTask(lcdScreen);	//start lcd program selection task
+	startTask(lcdScreen);	//starts lcd program selection task, do not modify or remove.
 }
 
 task autonomous()

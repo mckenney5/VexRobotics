@@ -1,3 +1,15 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//																																																					//
+//	Christian Tracy and Adam McKenney's Custom VEX LCD Screen Interface and Program Selection Include File	//
+//																																																					//
+//	This file facilitates the use of multiple different autonomous programs, selected using the LCD screen.	//
+// 	It should be included in the user's program with the following line near the start of the program.			//
+//
+//        #include "Tracy_and_McKenney's_Vex_Competition_Includes.c"
+//
+//	The above statement will cause this program to be included in the user's program. There's no
+//	need to modify this program.
+
 task lcdScreen();	//function declared here, and not before task main, to allow for replacement/removal of one
 void prepareToRunDefaultAutonProgram(int defaultAutonProgram);	//include file without affecting the other
 int autonProgramSelect = 0; //Autonomous Switch Variables
@@ -34,7 +46,7 @@ task lcdScreen()
 			else if(autonProgramSelect==8) displayNextLCDString(program8);
 			else if(autonProgramSelect==9) displayNextLCDString(program9);
 			else displayNextLCDString("Program");	//display "Program" if autonProgramSelect is out of range
-			displayNextLCDString(" ");
+			displayNextLCDString(" ");	//display one space
 			displayNextLCDNumber(autonProgramSelect);	//display program number
 			displayLCDCenteredString(1,"<     Batt     >");	//display navigation
 
@@ -56,7 +68,7 @@ task lcdScreen()
 					else if(autonProgramSelect==8) displayNextLCDString(program8);
 					else if(autonProgramSelect==9) displayNextLCDString(program9);
 					else displayNextLCDString("Program");	//display "Program" if autonProgramSelect is out of range
-					displayNextLCDString(" ");
+					displayNextLCDString(" ");	//display one space
 					displayNextLCDNumber(autonProgramSelect);	//display program number
 					while(nLCDButtons!=noButton){}	//wait for release
 				}
@@ -76,7 +88,7 @@ task lcdScreen()
 					else if(autonProgramSelect==8) displayNextLCDString(program8);
 					else if(autonProgramSelect==9) displayNextLCDString(program9);
 					else displayNextLCDString("Program");	//display "Program" if autonProgramSelect is out of range
-					displayNextLCDString(" ");
+					displayNextLCDString(" ");	//display one space
 					displayNextLCDNumber(autonProgramSelect);	//display program number
 					while(nLCDButtons!=noButton){}	//wait for release
 				}
@@ -108,7 +120,7 @@ task lcdScreen()
 					else if(autonProgramSelect==8) displayNextLCDString(program8);
 					else if(autonProgramSelect==9) displayNextLCDString(program9);
 					else displayNextLCDString("Program");	//display "Program" if autonProgramSelect is out of range
-					displayNextLCDString(" ");
+					displayNextLCDString(" ");	//display one space
 					displayNextLCDNumber(autonProgramSelect);	//display program number
 					displayLCDCenteredString(1,"<     Batt     >");	//display navigation
 				}	//end battery display
