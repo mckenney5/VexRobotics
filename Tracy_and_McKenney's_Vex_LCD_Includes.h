@@ -4,13 +4,15 @@
 //																																																					//
 //	This file facilitates the use of multiple different autonomous programs, selected using the LCD screen.	//
 // 	It should be included in the user's program with the following line near the start of the program.			//
-//
-//        #include "Tracy_and_McKenney's_Vex_Competition_Includes.c"
-//
-//	The above statement will cause this program to be included in the user's program. There's no
-//	need to modify this program.
+//																																																					//
+//        #include "Tracy_and_McKenney's_Vex_Competition_Includes.c"																				//
+//																																																					//
+//	The above statement will cause this program to be included in the user's program.												//
+//	There is no need to modify this program.																																//
+//																																																					//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-task lcdScreen();	//function declared here, and not before task main, to allow for replacement/removal of one
+task lcdScreen();	//functions declared here, and not before task main, to allow for replacement/removal of one
 void prepareToRunDefaultAutonProgram(int defaultAutonProgram);	//include file without affecting the other
 int autonProgramSelect = 0; //Autonomous Switch Variables
 const int noButton = 0, leftButton = 1, centerButton = 2, rightButton = 4;	//lcd button variables
@@ -33,7 +35,7 @@ task lcdScreen()
 		{
 			bLCDBacklight = true;	//turn on backlight
 			clearLCDLine(0);
-  		clearLCDLine(1);
+			clearLCDLine(1);
 			displayLCDPos(0,0);
 			if(autonProgramSelect==0) displayNextLCDString(program0);
 			else if(autonProgramSelect==1) displayNextLCDString(program1);
@@ -97,8 +99,8 @@ task lcdScreen()
 					while(nLCDButtons==centerButton)	//while center button pressed
 					{
 						clearLCDLine(0);
-  					clearLCDLine(1);
-				 		displayLCDString(0, 0, "Primary: ");
+						clearLCDLine(1);
+						displayLCDString(0, 0, "Primary: ");
 						sprintf(mainBattery, "%1.2f%c", nImmediateBatteryLevel/1000.0,'V');	//build value to be displayed
 						displayNextLCDString(mainBattery);	//display main battery level
 						displayLCDString(1, 0, "Backup: ");
@@ -107,7 +109,7 @@ task lcdScreen()
 						sleep(25);	//wait 25ms
 					}	//end while
 					clearLCDLine(0);
-  				clearLCDLine(1);
+					clearLCDLine(1);
 					displayLCDPos(0,0);
 					if(autonProgramSelect==0) displayNextLCDString(program0);
 					else if(autonProgramSelect==1) displayNextLCDString(program1);
