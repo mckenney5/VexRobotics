@@ -14,7 +14,7 @@
 
 void pre_auton()
 {
-  bStopTasksBetweenModes = false;	//Set bStopTasksBetweenModes to true to stop all tasks
+  bStopTasksBetweenModes = false;	//Set bStopTasksBetweenModes to true to stop all tasks, including lcdSreen,
   																//immediately before and after autonomous and user control.
   																//It is recommended to set bStopTasksBetweenModes to true before the competition.
 	resetAllEncoders();	//Resets all motor encoders. This won't work if using the standard "Vex_Competition_Includes"
