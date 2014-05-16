@@ -73,22 +73,23 @@ task autonomous()
 task usercontrol()
 {
 	int c1=0,c2=0,c3=0,c4=0;	//deadzone variables, use these to call analog sticks
+	const int ths = 15;	//threshold variable
 	while(true)	//infinite loop
 	{
 																										//$Calculate Deadzones$
-		if(abs(vexRT[Ch1]) > 15) //1 Axis
+		if(abs(vexRT[Ch1]) > ths) //1 Axis
 			c1 = vexRT[Ch1];
 		else
 			c1 = 0;
-		if(abs(vexRT[Ch2]) > 15) //2 Axis
+		if(abs(vexRT[Ch2]) > ths) //2 Axis
 			c2 = vexRT[Ch2];
 		else
 			c2 = 0;
-		if(abs(vexRT[Ch3]) > 15) //3 Axis
+		if(abs(vexRT[Ch3]) > ths) //3 Axis
 			c3 = vexRT[Ch3];
 		else
 			c3 = 0;
-		if(abs(vexRT[Ch4]) > 15) //4 Axis
+		if(abs(vexRT[Ch4]) > ths) //4 Axis
 			c4 = vexRT[Ch4];
 		else
 			c4 = 0;
