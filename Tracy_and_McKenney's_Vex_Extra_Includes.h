@@ -1,4 +1,4 @@
-int threshold = 15;
+int threshold = 15;	//Threshold value for deadzones. Not a constant to allow for editing in main file by end user.
 void resetAllMotorEncoders();
 int analogStick(int calledAnalogStick);
 int partnerAnalogStick(int partnerCalledAnalogStick);

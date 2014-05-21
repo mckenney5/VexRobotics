@@ -77,6 +77,7 @@ task usercontrol()
 {
 	while(true)
 	{
-		sleep(0);	//driver control code here
+		analogStick(1);	//Calls value of specified analog stick on primary controller, with deadzones applied.
+		partnerAnalogStick(1);	//Calls value of specified analog stick on partner controller, with deadzones applied.
 	}
 }	//end of driver control
