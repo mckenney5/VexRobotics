@@ -1,0 +1,81 @@
+int threshold = 15;
+void resetAllMotorEncoders();
+int analogStick(int calledAnalogStick);
+int partnerAnalogStick(int partnerCalledAnalogStick);
+void resetAllMotorEncoders()	//resets all motor encoders
+{
+	resetMotorEncoder(port1);
+	resetMotorEncoder(port2);
+	resetMotorEncoder(port3);
+	resetMotorEncoder(port4);
+	resetMotorEncoder(port5);
+	resetMotorEncoder(port6);
+	resetMotorEncoder(port7);
+	resetMotorEncoder(port8);
+	resetMotorEncoder(port9);
+	resetMotorEncoder(port10);
+}
+int analogStick(int calledAnalogStick)
+{
+	switch(calledAnalogStick)
+	{
+		case 1: //Axis 1
+			if(abs(vexRT[Ch1]) > threshold)
+				return vexRT[Ch1];
+			else
+				return 0;
+			break;
+		case 2:	//Axis 2
+			if(abs(vexRT[Ch2]) > threshold)
+				return vexRT[Ch2];
+			else
+				return 0;
+			break;
+		case 3:
+			if(abs(vexRT[Ch3]) > threshold)
+				return vexRT[Ch3];
+			else
+				return 0;
+			break;
+		case 4:
+			if(abs(vexRT[Ch4]) > threshold)
+				return vexRT[Ch4];
+			else
+				return 0;
+			break;
+		default:
+			return 0;
+	}
+}
+int partnerAnalogStick(int partnerCalledAnalogStick)
+{
+	switch(partnerCalledAnalogStick)
+	{
+		case 1: //Partner Axis 1
+			if(abs(vexRT[Ch1Xmtr2]) > threshold)
+				return vexRT[Ch1Xmtr2];
+			else
+				return 0;
+			break;
+		case 2:	//Partner Axis 2
+			if(abs(vexRT[Ch2Xmtr2]) > threshold)
+				return vexRT[Ch2Xmtr2];
+			else
+				return 0;
+			break;
+		case 3:	//Partner Axis 3
+			if(abs(vexRT[Ch3Xmtr2]) > threshold)
+				return vexRT[Ch3Xmtr2];
+			else
+				return 0;
+			break;
+		case 4:	//Partner Axis 4
+			if(abs(vexRT[Ch4Xmtr2]) > threshold)
+				return vexRT[Ch4Xmtr2];
+			else
+				return 0;
+			break;
+		default:
+			return 0;
+	}
+}

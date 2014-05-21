@@ -3,8 +3,9 @@
 #pragma competitionControl(Competition)											//
 #pragma autonomousDuration(20)															//	<---Main Competition Code
 #pragma userControlDuration(120)														//				!!DO NOT MODIFY!!
-#include "Tracy_and_McKenney's_Vex_Competition_Includes.c"	//
 #include "Tracy_and_McKenney's_Vex_LCD_Includes.h"					//
+#include "Tracy_and_McKenney's_Vex_Extra_Includes.h"				//
+#include "Tracy_and_McKenney's_Vex_Competition_Includes.c"	//
 //////////////////////////////////////////////////////////////
 
 void pre_auton()
@@ -12,7 +13,9 @@ void pre_auton()
   bStopTasksBetweenModes = false;	//Set bStopTasksBetweenModes to true to stop all tasks, including lcdSreen,
   																//immediately before and after autonomous and user control.
   																//It is recommended to set bStopTasksBetweenModes to true before the competition.
-	resetAllEncoders();	//Resets all motor encoders. This won't work if using the standard "Vex_Competition_Includes"
+	resetAllMotorEncoders();	//Resets all motor encoders
+
+	threshold = 15; //threshold variable for deadzones in usercontrol
 
 	program0 = "Program";
 	program1 = "Program";
@@ -25,7 +28,7 @@ void pre_auton()
 	program8 = "Program";
 	program9 = "Program";
 
-	startTask(lcdScreen);	//starts lcd program selection task, do not modify or remove.
+	startTask(lcdScreen);	//Starts lcd program selection task, do not modify or remove.
 }
 
 task autonomous()
@@ -72,28 +75,8 @@ task autonomous()
 
 task usercontrol()
 {
-	int c1=0,c2=0,c3=0,c4=0;	//deadzone variables, use these to call analog sticks
-	const int ths = 15;	//threshold variable
-	while(true)	//infinite loop
+	while(true)
 	{
-																										//$Calculate Deadzones$
-		if(abs(vexRT[Ch1]) > ths) //1 Axis
-			c1 = vexRT[Ch1];
-		else
-			c1 = 0;
-		if(abs(vexRT[Ch2]) > ths) //2 Axis
-			c2 = vexRT[Ch2];
-		else
-			c2 = 0;
-		if(abs(vexRT[Ch3]) > ths) //3 Axis
-			c3 = vexRT[Ch3];
-		else
-			c3 = 0;
-		if(abs(vexRT[Ch4]) > ths) //4 Axis
-			c4 = vexRT[Ch4];
-		else
-			c4 = 0;
-																										//$$End Deadzones$$
-		//driver control code here
+		sleep(0);	//driver control code here
 	}
 }	//end of driver control

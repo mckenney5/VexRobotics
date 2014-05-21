@@ -26,8 +26,6 @@ void pre_auton();
 task autonomous();
 task usercontrol();
 
-void resetAllEncoders();
-
 // int nTimeXX = 0;
 bool bStopTasksBetweenModes = true;
 
@@ -38,8 +36,8 @@ task main()
   // Master CPU will not let competition start until powered on for at least 2-seconds
    clearLCDLine(0);
    clearLCDLine(1);
-   displayLCDPos(0, 0);
-   displayNextLCDString("Startup");
+   displayLCDCenteredString(0,"Christian Tracy");
+   displayLCDCenteredString(1,"Adam McKenney");
    wait1Msec(2000);
 
   pre_auton();
@@ -176,19 +174,6 @@ void allTasksStop()
 #endif
 }
 
-void resetAllEncoders()	//resets all motor encoders
-{
-	resetMotorEncoder(port1);
-	resetMotorEncoder(port2);
-	resetMotorEncoder(port3);
-	resetMotorEncoder(port4);
-	resetMotorEncoder(port5);
-	resetMotorEncoder(port6);
-	resetMotorEncoder(port7);
-	resetMotorEncoder(port8);
-	resetMotorEncoder(port9);
-	resetMotorEncoder(port10);
-}
 /*
 static void displayStatusAndTime()
 {
