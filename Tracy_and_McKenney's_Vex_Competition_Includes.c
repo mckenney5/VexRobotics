@@ -17,7 +17,6 @@
 //			instead of only between autonomous and usercontrol.																						//
 //		Removed UserControlCodePlaceholderForTesting() and AutonomousCodePlaceholderForTesting().				//
 //		Removed displayStatusAndTime().																																	//
-//		Added resetAllEncoders() function. This resets all I2C motor encoders when called.							//
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void allMotorsOff();
