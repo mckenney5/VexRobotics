@@ -16,7 +16,7 @@ void resetAllMotorEncoders()	//resets all motor encoders
 	resetMotorEncoder(port10);
 }
 int analogStick(int calledAnalogStick)
-{
+{	//Calls value of specified analog stick on primary controller, with deadzones applied.
 	switch(calledAnalogStick)
 	{
 		case 1: //Axis 1
@@ -31,24 +31,24 @@ int analogStick(int calledAnalogStick)
 			else
 				return 0;
 			break;
-		case 3:
+		case 3:	//Axis 3
 			if(abs(vexRT[Ch3]) > threshold)
 				return vexRT[Ch3];
 			else
 				return 0;
 			break;
-		case 4:
+		case 4:	//Axis 4
 			if(abs(vexRT[Ch4]) > threshold)
 				return vexRT[Ch4];
 			else
 				return 0;
 			break;
-		default:
+		default:	//if calledAnalogstick out of range
 			return 0;
 	}
 }
 int partnerAnalogStick(int partnerCalledAnalogStick)
-{
+{	//Calls value of specified analog stick on partner controller, with deadzones applied.
 	switch(partnerCalledAnalogStick)
 	{
 		case 1: //Partner Axis 1
@@ -75,7 +75,7 @@ int partnerAnalogStick(int partnerCalledAnalogStick)
 			else
 				return 0;
 			break;
-		default:
+		default:	//if partnerCalledAnalogStick out of range
 			return 0;
 	}
 }
