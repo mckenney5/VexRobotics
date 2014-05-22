@@ -5,7 +5,7 @@
 //	This file facilitates the use of multiple different autonomous programs, selected using the LCD screen.	//
 // 	It should be included in the user's program with the following line near the start of the program.			//
 //																																																					//
-//        #include "Tracy_and_McKenney's_Vex_Competition_Includes.c"																				//
+//        #include "Tracy_and_McKenney's_Vex_LCD_Includes.h"																								//
 //																																																					//
 //	The above statement will cause this program to be included in the user's program.												//
 //	There is no need to modify this program.																																//

@@ -9,13 +9,14 @@
 //////////////////////////////////////////////////////////////
 
 void pre_auton()
-{
-  bStopTasksBetweenModes = false;	//Set bStopTasksBetweenModes to true to stop all tasks, including lcdSreen,
+{	//Code here will run at startup. Robot will not enter autonomous or usercontrol while this funtion is running.
+
+  bStopTasksBetweenModes = false;	//Set bStopTasksBetweenModes to true to stop all tasks, including lcdScreen,
   																//immediately before and after autonomous and user control.
   																//It is recommended to set bStopTasksBetweenModes to true before the competition.
-	resetAllMotorEncoders();	//Resets all motor encoders
+	resetAllMotorEncoders();	//resets all I2C motor encoders
 
-	threshold = 15; //threshold variable for deadzones in usercontrol
+	threshold = 15; //Threshold variable for deadzones in usercontrol, default is 15.
 
 	program0 = "Program";
 	program1 = "Program";
@@ -28,10 +29,15 @@ void pre_auton()
 	program8 = "Program";
 	program9 = "Program";
 
-	startTask(lcdScreen);	//Starts lcd program selection task, do not modify or remove.
-}
+	//any code you wish to run at startup (reset encoders, set servo positions ect.) should be placed here
 
-task autonomous()
+//////////////////////////
+	startTask(lcdScreen);	//	<---Starts lcd program selection task, do not modify or remove.
+//////////////////////////
+
+}	//end of pre_auton
+
+task autonomous()	//autonomous segment
 {
 	autonReset:	//autonomous segment restart point
 	switch(autonProgramSelect)
@@ -73,9 +79,9 @@ task autonomous()
 	}
 }	//end of autonomous
 
-task usercontrol()
+task usercontrol()	//driver controlled segment
 {
-	while(true)
+	while(true)	//Infinite loop, place code for driver controlled segment inside.
 	{
 		analogStick(1);	//Calls value of specified analog stick on primary controller, with deadzones applied.
 		partnerAnalogStick(1);	//Calls value of specified analog stick on partner controller, with deadzones applied.

@@ -1,3 +1,18 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//																																																					//
+//	Christian Tracy and Adam McKenney's Custom VEX LCD Screen Interface and Program Selection Include File	//
+//																																																					//
+//	This file allows the programmer to call the value of the analog sticks on both controllers with 				//
+//	deadzones applied. It also allows for all I2C motor encoders to be reset with a single function.				//
+//	It should be included in the user's program with the following line near the start of the program.			//
+//																																																					//
+//        #include "Tracy_and_McKenney's_Vex_Extra_Includes.h"																							//
+//																																																					//
+//	The above statement will cause this program to be included in the user's program.												//
+//	There is no need to modify this program.																																//
+//																																																					//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 int threshold = 15;	//Threshold value for deadzones. Not a constant to allow for editing in main file by end user.
 void resetAllMotorEncoders();
 int analogStick(int calledAnalogStick);
