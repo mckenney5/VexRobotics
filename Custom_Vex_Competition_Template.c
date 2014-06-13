@@ -1,3 +1,15 @@
+/*
+Christian Tracy & Adam McKenney's Vex Custom Competition Template.
+This program is designed to be used with the following include files:
+
+Tracy_and_McKenney's_Vex_LCD_Includes.h
+Tracy_and_McKenney's_Vex_Extra_Includes.h
+Tracy_and_McKenney's_Vex_Competition_Includes.c
+
+Those files should be in the same directory as Custom_Vex_Competition_Template.c (this file)
+Documentation on the include files is located inside each file.
+*/
+
 //////////////////////////////////////////////////////////////
 #pragma platform(VEX)																				//
 #pragma competitionControl(Competition)											//
@@ -76,7 +88,7 @@ task autonomous()	//autonomous segment
 			prepareToRunDefaultAutonProgram(0);	//prepare to run the case that matches the number here
 			goto autonReset;	//restart autonomous segment
 			break;
-	}
+	}	//end of switch
 }	//end of autonomous
 
 task usercontrol()	//driver controlled segment
@@ -85,5 +97,5 @@ task usercontrol()	//driver controlled segment
 	{
 		analogStick(1);	//Calls value of specified analog stick on primary controller, with deadzones applied.
 		partnerAnalogStick(1);	//Calls value of specified analog stick on partner controller, with deadzones applied.
-	}
+	}	//end of infinite loop
 }	//end of driver control
