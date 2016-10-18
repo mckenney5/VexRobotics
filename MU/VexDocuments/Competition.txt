@@ -1,0 +1,9 @@
+Game Manual: link.vex.com/docs/vex-starstruck/VEX-Starstruck-GameManual
+
+VEX: http://www.roboticseducation.org/competition-teams/vex-robotics-competition/
+
+TEECA EAST: https://teecaeast.org/robotics/
+
+DESCRIPTION from TEECA East:
+
+This year the TEECA East Robotics Challenge will be BASED ON THE VEX-U CHALLENGE, STARSTRUCK!  Last year we based the challenge around high school VRC rules, BUT THIS YEAR WE WILL FOLLOW VEX UNIVERSITY GAME RULES AND ROBOT MODIFICATIONS. This year’s game is Starstruck. All robots must conform to the rules governing a UNIVERSITY VEX event (VEX U). See this important VexU appendix to the game manual. Therefore, each TEECA team will compete with ONE robot no larger than 24” X 24” X 24”. For this TEECA East Robotics Challenge, you do NOT need to be an officially registered VexU team. Our challenge at Virginia Beach is NOT a VexU qualifying event.  However, since we will follow the official VexU rules and build a single robot that conforms to the VexU requirements, you will be able to reuse your robot for the rest of the VexU season in tournaments around the country. The TEECA competition will consist of five components: a round robin tournament based on Starstruck; a 60-second VexU robot skills challenge; a 60-second VexU programming skills challenge; a team presentation on robot design/fabrication/testing; and a unique autonomous task announced on the day of the event. 
