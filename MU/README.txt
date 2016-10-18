@@ -1,6 +1,6 @@
 This is the home of Millersville Uni TEECA team for the year of 2016.
 
-Except for Files in the "VexDocuments" folder (which are copy rights of their respective owners) the files in this repo is licensed under the 3 clause BSD license.
+Except for Files in the "VexDocuments" folder (which are copy rights of their respective owners) the files in this repo are licensed under the 3 clause BSD license.
 --
 Folders:
 	Source - 	RobotC Source Code
