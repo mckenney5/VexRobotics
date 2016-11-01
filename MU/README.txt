@@ -4,8 +4,9 @@ Except for Files in the "VexDocuments" folder (which are copy rights of their re
 --
 Folders:
 	Source - 	RobotC Source Code
-		Stable - 	Stable releases of code
+		Stable - 	Stable releases of code (should only be one file)
 		Testing - 	Testing releases of code
+		Unsorted - 	Al's example code
 	TeamDocuments -	Documents pertaining to the robot from the team
 	VexDocuments - 	Documents from VEX and TEECA about the challenge
 --
