@@ -18,6 +18,9 @@ VEX Robotics Source Code
 See License (../../LICENSE.TXT)
 */
 
+const int THRESHOLD = 15; //Threshold Variable
+int c2X = 0, c2 = 0, c3X = 0, c3 = 0;	//Deadzone Variables
+
 task main()
 {
 	while(true){
@@ -38,21 +41,34 @@ task main()
 		//LeftRearMotorD is Master for LDriver
 		//RightRearMotorD is master for RDriver
 		motor[RightForwardMotorD] = motor[RightRearMotorD];
-		//motor[RightRearMotorD] = motor[RightRearMotorD];
 		motor[LeftForwardMotorD] = motor[LeftRearMotorD];
+
 		//LeftRearMotorA is Master for Arm
-/*
 		motor[RightForwardMotorA] = motor[LeftRearMotorA];
 		motor[RightRearMotorA] = motor[LeftRearMotorA];
 		motor[RightMiddleMotorA] = motor[LeftRearMotorA];
 		motor[LeftForwardMotorA] = motor[LeftRearMotorA];
-		//motor[LeftRearMotorA] = motor[LeftRearMotorA];
 		motor[LeftMiddleMotorA] = motor[LeftRearMotorA];
 		//End Slave
-*/
 
 		//User Input
-		motor[LeftRearMotorD] = vexRT[Ch3]; //<-- Add threshold, add max to 200
-		motor[RightRearMotorD] = vexRT[Ch2];//<--""
+		//Driver
+		if(abs(vexRT[Ch2]) > THRESHOLD) //2 Axis
+			c2 = vexRT[Ch2];
+		else
+			c2 = 0;
+		if(abs(vexRT[Ch3]) > THRESHOLD) //3 Axis
+			c3 = vexRT[Ch3];
+		else
+			c3 = 0;
+		motor[LeftRearMotorD] = c3;
+		motor[RightRearMotorD] = c2;
+
+		//Arm
+		if(abs(vexRT[Ch2Xmtr2]) > THRESHOLD) //2X Axis
+			c2X = vexRT[Ch2Xmtr2];
+		else
+			c2X = 0;
+		motor[LeftRearMotorA] = c2X / 2;
 	}
 }
