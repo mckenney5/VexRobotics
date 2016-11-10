@@ -3,11 +3,11 @@
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port1,           LeftForwardMotorA, tmotorVex393_HBridge, openLoop, reversed, driveLeft, encoderPort, None)
 #pragma config(Motor,  port2,           LeftMiddleMotorA, tmotorVex393_MC29, openLoop, reversed, driveLeft, encoderPort, None)
-#pragma config(Motor,  port3,           LeftRearMotorA, tmotorVex393_MC29, openLoop, reversed, driveLeft, encoderPort, I2C_2)
+#pragma config(Motor,  port3,           LeftRearMotorA, tmotorVex393_MC29, PIDControl, reversed, driveLeft, encoderPort, I2C_2)
 #pragma config(Motor,  port4,           LeftForwardMotorD, tmotorVex393_MC29, openLoop, driveLeft, encoderPort, None)
 #pragma config(Motor,  port5,           LeftRearMotorD, tmotorVex393_MC29, openLoop, driveLeft, encoderPort, None)
 #pragma config(Motor,  port6,           RightForwardMotorD, tmotorVex393_MC29, openLoop, reversed, driveRight, encoderPort, None)
-#pragma config(Motor,  port7,           RightRearMotorD, tmotorVex393_MC29, openLoop, reversed, driveRight, encoderPort, I2C_1)
+#pragma config(Motor,  port7,           RightRearMotorD, tmotorVex393_MC29, PIDControl, reversed, driveRight, encoderPort, I2C_1)
 #pragma config(Motor,  port8,           RightForwardMotorA, tmotorVex393_MC29, openLoop, driveRight, encoderPort, None)
 #pragma config(Motor,  port9,           RightMiddleMotorA, tmotorVex393_MC29, openLoop, driveRight, encoderPort, None)
 #pragma config(Motor,  port10,          RightRearMotorA, tmotorVex393_HBridge, openLoop, driveRight, encoderPort, None)
@@ -74,6 +74,8 @@ task main()
 			c2X = vexRT[Ch2Xmtr2];
 		else
 			c2X = 0;
-		motor[LeftRearMotorA] = c2X / 2;
+		//Arm Govenor
+		int gov = (c2X / 2) -15;
+		motor[LeftRearMotorA] = gov;
 	}
 }
