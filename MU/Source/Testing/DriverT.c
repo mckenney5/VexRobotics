@@ -19,25 +19,30 @@ See License (../../LICENSE.TXT)
 */
 
 const int THRESHOLD = 15; //Threshold Variable
-int c2X = 0, c2 = 0, c3X = 0, c3 = 0;	//Deadzone Variables
+int c2X = 0, c2 = 0, c3 = 0;	//Deadzone Variables
 
 task main()
 {
 	while(true){
-		//Emergency Motor Stop
+	//All Motor Stop
+		//Masters
 		if (vexRT[Btn8D] == 1){
-		motor[LeftForwardMotorA] = 0;
-		motor[LeftForwardMotorD] = 0;
-		motor[LeftMiddleMotorA] = 0;
-		motor[LeftRearMotorA] = 0;
-		motor[RightForwardMotorA] = 0;
-		motor[RightForwardMotorD] = 0;
-		motor[RightMiddleMotorA] = 0;
-		motor[RightRearMotorA] = 0;
-		motor[RightRearMotorD] = 0;
-		wait1Msec(5000); //wait 5 sec
+			motor[LeftRearMotorD] = 0;
+			motor[RightRearMotorD] = 0;
+			motor[LeftRearMotorA] = 0;
+		//Drive
+			motor[LeftForwardMotorD] = 0;
+			motor[RightForwardMotorD] = 0;
+		//Arm
+			motor[LeftForwardMotorA] = 0;
+			motor[LeftMiddleMotorA] = 0;
+			motor[RightForwardMotorA] = 0;
+			motor[RightMiddleMotorA] = 0;
+			motor[RightRearMotorA] = 0;
+			//wait1Msec(5000); //wait 5 sec
 		}
-		//Slave Mapping
+
+	//Slave Mapping
 		//LeftRearMotorD is Master for LDriver
 		//RightRearMotorD is master for RDriver
 		motor[RightForwardMotorD] = motor[RightRearMotorD];
@@ -49,9 +54,9 @@ task main()
 		motor[RightMiddleMotorA] = motor[LeftRearMotorA];
 		motor[LeftForwardMotorA] = motor[LeftRearMotorA];
 		motor[LeftMiddleMotorA] = motor[LeftRearMotorA];
-		//End Slave
+	//End Slave
 
-		//User Input
+	//User Input
 		//Driver
 		if(abs(vexRT[Ch2]) > THRESHOLD) //2 Axis
 			c2 = vexRT[Ch2];
