@@ -5,9 +5,9 @@
 #pragma config(Motor,  port2,           LeftMiddleMotorA, tmotorVex393_MC29, openLoop, reversed, driveLeft, encoderPort, None)
 #pragma config(Motor,  port3,           LeftRearMotorA, tmotorVex393_MC29, openLoop, reversed, driveLeft, encoderPort, I2C_2)
 #pragma config(Motor,  port4,           LeftForwardMotorD, tmotorVex393_MC29, openLoop, driveLeft, encoderPort, None)
-#pragma config(Motor,  port5,           LeftRearMotorD, tmotorVex393_MC29, openLoop, driveLeft, encoderPort, None)
+#pragma config(Motor,  port5,           LeftRearMotorD, tmotorVex393_MC29, openLoop, driveLeft, encoderPort, I2C_1)
 #pragma config(Motor,  port6,           RightForwardMotorD, tmotorVex393_MC29, openLoop, reversed, driveRight, encoderPort, None)
-#pragma config(Motor,  port7,           RightRearMotorD, tmotorVex393_MC29, openLoop, reversed, driveRight, encoderPort, I2C_1)
+#pragma config(Motor,  port7,           RightRearMotorD, tmotorVex393_MC29, openLoop, reversed, driveRight)
 #pragma config(Motor,  port8,           RightForwardMotorA, tmotorVex393_MC29, openLoop, driveRight, encoderPort, None)
 #pragma config(Motor,  port9,           RightMiddleMotorA, tmotorVex393_MC29, openLoop, driveRight, encoderPort, None)
 #pragma config(Motor,  port10,          RightRearMotorA, tmotorVex393_HBridge, openLoop, driveRight, encoderPort, None)
@@ -18,15 +18,14 @@
 VEX Robotics Source Code, See License (../../LICENSE.TXT)*/
 
 //Vars
-const int THRESHOLD = 15; //Threshold Variable
+const int THRESHOLD = 20; //Threshold Variable
 
-task main()
-{
-	int c2X = 0, c2 = 0, c3 = 0;	//Deadzone Variables
+task main(){
+	int c2X = 0, c2 = 0, c3 = 0, c3X = 0;	//Deadzone Variables
 	while(true){
 	//All Motor Stop
 		//Masters
-		if (vexRT[Btn8D] == 1){
+		if (vexRT[Btn8D] == 1 || vexRT[Btn8DXmtr2]){
 			motor[LeftRearMotorD] = 0;
 			motor[RightRearMotorD] = 0;
 			motor[LeftRearMotorA] = 0;
@@ -56,7 +55,7 @@ task main()
 		motor[LeftMiddleMotorA] = motor[LeftRearMotorA];
 	//End Slave
 
-	//User Input
+//User Input
 		//Driver
 		if(abs(vexRT[Ch2]) > THRESHOLD) //2 Axis
 			c2 = vexRT[Ch2];
@@ -69,13 +68,27 @@ task main()
 		motor[LeftRearMotorD] = c3;
 		motor[RightRearMotorD] = c2;
 
-		//Arm
+	//Arm
+		int gov = 0; //Govenor
+		//Gross Motor Control
+		if(abs(vexRT[Ch3Xmtr2]) > THRESHOLD) //3X Axis
+			c3X = vexRT[Ch3Xmtr2];
+		else
+			c3X = 0;
+		//Fine Motor Control
 		if(abs(vexRT[Ch2Xmtr2]) > THRESHOLD) //2X Axis
 			c2X = vexRT[Ch2Xmtr2];
 		else
 			c2X = 0;
-		//Arm Govenor
-		int gov = (c2X / 2);
-		motor[LeftRearMotorA] = gov;
+		//Arm Control
+		if(abs(c2X) > 0){
+			gov = (c2X / 4);
+			motor[LeftRearMotorA] = gov;
+		}else if(abs(c3X) > 0){
+			gov = (c3X / 2);
+			motor[LeftRearMotorA] = gov;
+		}
+
+
 	}
 }
