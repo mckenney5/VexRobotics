@@ -36,7 +36,7 @@ void pre_auton(){
 }
 
 task autonomous(){
-	const int POWAH = 60; //60, do not change
+	const int POWAH = -60; //60, do not change
 //Move 4ft backwards
 	//LeftRearMotorA is Master for Arm
 	nMotorEncoder[LeftRearMotorD] = 0;
