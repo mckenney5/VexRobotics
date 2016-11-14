@@ -30,7 +30,7 @@ void pre_auton(){
 	//If needed, insert preaction code (clearing sensors, etc..) below this comment
 }
 task autonomous(){
-	//AutonomousCodePlaceholderForTesting(); //keep this line of code
+	AutonomousCodePlaceholderForTesting(); //keep this line of code
 	//See AutonomousT.c
 }
 
