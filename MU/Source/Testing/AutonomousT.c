@@ -1,4 +1,5 @@
 #pragma config(I2C_Usage, I2C1, i2cSensors)
+#pragma config(Sensor, dgtl1,  TouchSensor,    sensorTouch)
 #pragma config(Sensor, I2C_1,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Sensor, I2C_2,  ,               sensorQuadEncoderOnI2CPort,    , AutoAssign )
 #pragma config(Motor,  port1,           LeftForwardMotorA, tmotorVex393_HBridge, openLoop, reversed, driveLeft, encoderPort, None)
@@ -21,6 +22,13 @@ VEX Robotics Source Code, See License (../../LICENSE.TXT)*/
 #pragma userControlDuration(0)
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
+//c 12.987
+//Dia = 4.134
+//392.3
+//on 60 power, 1 rotation of the wheel = 392.3 tics
+//one rotation = 12.987 inches
+//tics for 4ft move 2100
+
 void pre_auton(){
 	//Don't change the below line of code
   bStopTasksBetweenModes = true;
@@ -28,9 +36,38 @@ void pre_auton(){
 }
 
 task autonomous(){
-
+	const int POWAH = 60; //60, do not change
+//Move 4ft backwards
+	//LeftRearMotorA is Master for Arm
+	nMotorEncoder[LeftRearMotorD] = 0;
+	motor[LeftRearMotorD] = POWAH;
+	motor[RightRearMotorD] = POWAH;
+	motor[LeftForwardMotorD] = POWAH;
+	motor[RightForwardMotorD] = POWAH;
+	while(nMotorEncoder[LeftRearMotorD] >= -2100){
+		//foo
+	}
+	motor[LeftRearMotorD] = 0;
+	motor[RightRearMotorD] = 0;
+	motor[LeftForwardMotorD] = 0;
+	motor[RightForwardMotorD] = 0;
+	//Arm
+	const unsigned int POWAH2 = 60; //60
+	motor[RightForwardMotorA] = POWAH2;
+	motor[RightRearMotorA] = POWAH2;
+	motor[RightMiddleMotorA] = POWAH2;
+	motor[LeftForwardMotorA] = POWAH2;
+	motor[LeftMiddleMotorA] = POWAH2;
+	motor[LeftForwardMotorA] = POWAH2;
+	wait1Msec(2800); // <----------------------
+	//All motors stop
+	motor[LeftRearMotorA] = 0;
+	motor[LeftForwardMotorA] = 0;
+	motor[LeftMiddleMotorA] = 0;
+	motor[RightForwardMotorA] = 0;
+	motor[RightMiddleMotorA] = 0;
+	motor[RightRearMotorA] = 0;
 }
-
 
 task usercontrol()
 {
