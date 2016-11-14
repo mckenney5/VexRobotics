@@ -44,7 +44,7 @@ task autonomous(){
 	motor[RightRearMotorD] = POWAH;
 	motor[LeftForwardMotorD] = POWAH;
 	motor[RightForwardMotorD] = POWAH;
-	while(nMotorEncoder[LeftRearMotorD] >= -2100){
+	while(nMotorEncoder[LeftRearMotorD] >= -2100 || SensorValue(TouchSensor) == 0){
 		//foo
 	}
 	motor[LeftRearMotorD] = 0;
@@ -72,10 +72,8 @@ task autonomous(){
 task usercontrol()
 {
 	//No user control code needed except the lines of code below this comment
-/*
 	while (true)
 	{
 	  UserControlCodePlaceholderForTesting();
 	}
-	*/
 }
